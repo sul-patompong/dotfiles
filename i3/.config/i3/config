@@ -12,18 +12,18 @@
 set $mod Mod4
 
 # Monitor setup
-exec ~/.screenlayout/default.sh
+exec xrandr --output DP-0 --primary --mode 3840x2160 --pos 0x0 --rotate left --output DP-1 --off --output HDMI-0 --off --output DP-2 --mode 3840x2160 --pos 2160x528 --rotate normal --output DP-3 --off --output HDMI-1 --off --output DP-4 --off --output DP-5 --off
 # Background setup
-exec --no-startup-id feh --bg-center $HOME/wallpaper.png
 exec --no-startup-id picom
 
 
 # Mouse scrolling setup
 # Number 11 means the device id which can find with 'xinput list' command
-exec --on-startup-id xinput set-prop 11 "libinput Natural Scrolling Enabled" 1
+exec --on-startup-id xinput set-prop 14 "libinput Natural Scrolling Enabled" 1
 
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id feh --bg-center $HOME/wallpaper.png
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
