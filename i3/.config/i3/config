@@ -9,21 +9,25 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $pm DP-2
-set $lm DP-1
 set $mod Mod4
 
-exec --no-startup-id xmodmap ~/.Xmodmap
+# Monitor setup
+exec ~/.screenlayout/default.sh
+# Background setup
+exec --no-startup-id feh --bg-center $HOME/wallpaper.png
 exec --no-startup-id picom
-exec_always --no-startup-id polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-bindsym $mod+space exec rofi -show combi 
-# exec_always --no-startup-id killall polybar
-# exec_always --no-startup-id polybar
+
+
+# Mouse scrolling setup
+# Number 11 means the device id which can find with 'xinput list' command
+exec --on-startup-id xinput set-prop 11 "libinput Natural Scrolling Enabled" 1
+
+# Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:iosevkaterm nerd font 12
+font pango:Iosevka Nerd Font 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -65,18 +69,18 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -85,10 +89,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -97,10 +101,14 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+h split h
+bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -110,23 +118,16 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-# bindsym $mod+space focus mode_toggle
+bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-workspace 1 output $pm
-workspace 2 output $pm
-workspace 3 output $pm
-workspace 4 output $pm
-workspace 5 output $pm
-workspace 6 output $pm
-workspace 7 output $pm
-workspace 8 output $lm
-workspace 9 output $lm
-workspace 0 output $lm
+
+set $primaryMonitor "DP-2"
+set $secondaryMonitor "DP-0"
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -140,6 +141,16 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+workspace 1 output $primaryMonitor
+workspace 2 output $primaryMonitor
+workspace 3 output $primaryMonitor
+workspace 4 output $primaryMonitor
+workspace 5 output $primaryMonitor
+workspace 7 output $secondaryMonitor
+workspace 8 output $secondaryMonitor
+workspace 9 output $secondaryMonitor
+workspace 10 output $secondaryMonitor
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -180,10 +191,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym l resize shrink width 10 px or 10 ppt
+        bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym h resize grow width 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -199,8 +210,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-#         status_command i3status
-# }
+# Styling
+gaps inner 4
+client.focused #fabd2f #d79921 #fbf1c7 #d65d0e
