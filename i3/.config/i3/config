@@ -211,5 +211,5 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Styling
-gaps inner 4
+gaps inner 10
 client.focused #fabd2f #d79921 #fbf1c7 #d65d0e
