@@ -8,6 +8,7 @@ return {
     config = true,
     opts = {
       transparent_mode = true,
+      bold = false,
     },
   },
   {
