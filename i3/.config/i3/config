@@ -12,9 +12,10 @@
 set $mod Mod4
 
 # Monitor setup
-exec xrandr --output DP-0 --primary --mode 3840x2160 --pos 0x0 --rotate left --output DP-1 --off --output HDMI-0 --off --output DP-2 --mode 3840x2160 --pos 2160x528 --rotate normal --output DP-3 --off --output HDMI-1 --off --output DP-4 --off --output DP-5 --off
+exec xrandr --output DP-0 --mode 3840x2160 --pos 0x0 --rotate left --output DP-1 --off --output HDMI-0 --off --output DP-2 --mode 3840x2160 --primary --pos 2160x528 --rotate normal --output DP-3 --off --output HDMI-1 --off --output DP-4 --off --output DP-5 --off
 # Background setup
 exec --no-startup-id picom
+exec --no-startup-id dunst
 
 
 # Mouse scrolling setup
@@ -62,11 +63,14 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
+# Screenshot
+bindsym Print exec --no-startup-id flameshot gui 
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+c kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
@@ -182,6 +186,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# put it on sleep mode
+bindsym $mod+Shift+q exec "systemctl suspend"
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
