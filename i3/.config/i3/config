@@ -131,7 +131,7 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $primaryMonitor "DP-2"
+set $primaryMonitor "HDMI-0"
 set $secondaryMonitor "DP-0"
 
 # Define names for default workspaces for which we configure key bindings later on.
