@@ -3,11 +3,11 @@ local config = {}
 
 config.color_scheme = "Gruvbox Dark (Gogh)"
 -- config.color_scheme = "Everforest Dark Hard (Gogh)"
-config.font = wezterm.font("Iosevka Nerd Font")
-config.font_size = 16
+config.font = wezterm.font("ZedMono Nerd Font Mono")
+config.font_size = 17
 
 config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.97
+-- config.window_background_opacity = 0.95
 
 return config
