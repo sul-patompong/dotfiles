@@ -73,7 +73,7 @@ alt-shift-0 = 'move-node-to-workspace 10'
 
 [workspace-to-monitor-force-assignment]
 9 = 'secondary'
-0 = 'secondary'
+10 = 'secondary'
 
 alt-shift-c = 'reload-config'
 
