@@ -35,8 +35,8 @@ alt-v = 'split vertical'
 
 alt-f = 'fullscreen'
 
-alt-shift-s = 'layout v_accordion'               # 'layout stacking' in i3
-alt-shift-w = 'layout h_accordion'               # 'layout tabbed' in i3
+alt-shift-s = 'layout v_accordion' # 'layout stacking' in i3
+alt-shift-w = 'layout h_accordion' # 'layout tabbed' in i3
 alt-shift-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
 alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
@@ -73,7 +73,7 @@ alt-shift-0 = 'move-node-to-workspace 10'
 
 [workspace-to-monitor-force-assignment]
 9 = 'secondary'
-0 = 'secondary'
+10 = 'secondary'
 
 alt-shift-c = 'reload-config'
 
@@ -117,9 +117,7 @@ if.app-id = 'com.brave.Browser'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace 4'
-
-[[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = 'move-node-to-workspace 5'
+
+
