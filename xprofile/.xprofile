@@ -1,3 +1,7 @@
-slstatus &
-picom &
+#!/bin/bash
+if [ "$DESKTOP_SESSION" = "dwm" ]; then
+  slstatus &
+  picom &
+fi
+
 xmodmap ~/.Xmodmap
