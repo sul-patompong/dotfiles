@@ -3,5 +3,5 @@ import = ["~/.config/alacritty/themes/themes/gruvbox_material_hard_dark.toml"]
 [window]
 padding = { x = 2, y = 2 }
 [font]
-normal = { family = "IosevkaLyteTerm" }
-size = 9
+normal = { family = "IosevkaTerm Nerd Font" }
+size = 16
