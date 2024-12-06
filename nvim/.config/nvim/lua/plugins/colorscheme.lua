@@ -1,23 +1,12 @@
 return {
-  -- { "savq/melange-nvim" },
   -- { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = { transparent_mode = true } },
+  { "rebelot/kanagawa.nvim", opts = { transparent = true, theme = "dragon" } },
   {
-    "rebelot/kanagawa.nvim",
-    lazy = false,
-    priority = 1000,
+    "LazyVim/LazyVim",
     opts = {
-      theme = "lotus",
+      colorscheme = "kanagawa-dragon",
     },
-    config = function()
-      vim.cmd("colorscheme kanagawa")
-    end,
   },
-  -- {
-  --   "LazyVim/LazyVim",
-  --   opts = {
-  --     colorscheme = "kanagawa",
-  --   },
-  -- },
   -- {
   --   "sainnhe/gruvbox-material",
   --   lazy = false,
