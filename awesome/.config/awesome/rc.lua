@@ -277,10 +277,20 @@ awful.keyboard.append_global_keybindings({
 	awful.key({}, "XF86MonBrightnessUp", function()
 		awful.spawn("brightnessctl set +10%")
 	end, { description = "increase brightness", group = "system" }),
-
 	awful.key({}, "XF86MonBrightnessDown", function()
 		awful.spawn("brightnessctl set 10%-")
 	end, { description = "decrease brightness", group = "system" }),
+	awful.key({}, "XF86AudioRaiseVolume", function()
+		awful.spawn("amixer -q sset Master 5%+")
+	end, { description = "increase volume", group = "audio" }),
+
+	awful.key({}, "XF86AudioLowerVolume", function()
+		awful.spawn("amixer -q sset Master 5%-")
+	end, { description = "decrease volume", group = "audio" }),
+
+	awful.key({}, "XF86AudioMute", function()
+		awful.spawn("amixer -q sset Master toggle")
+	end, { description = "mute/unmute audio", group = "audio" }),
 })
 
 -- Tags related keybindings
