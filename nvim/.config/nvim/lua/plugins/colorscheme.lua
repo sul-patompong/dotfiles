@@ -1,10 +1,10 @@
 return {
-  -- { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = { transparent_mode = true } },
-  { "rebelot/kanagawa.nvim", opts = { transparent = true, theme = "dragon" } },
+  { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = { transparent_mode = true } },
+  -- { "rebelot/kanagawa.nvim", opts = { transparent = true, theme = "dragon" } },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa-dragon",
+      colorscheme = "gruvbox",
     },
   },
   -- {
