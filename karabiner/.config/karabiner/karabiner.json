@@ -8,7 +8,27 @@
                 },
                 "rules": [
                     {
+                        "description": "Super Keys",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "spacebar" }],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "left_command",
+                                        "modifiers": ["left_shift", "left_control", "left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Home Row Mods",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
