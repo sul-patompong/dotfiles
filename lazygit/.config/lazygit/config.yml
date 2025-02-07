@@ -1,0 +1,11 @@
+gui:
+  theme:
+    activeBorderColor:
+      - "#c0caf5" # Light blue (Kanagawa compatible)
+      - bold
+    inactiveBorderColor:
+      - "#565f89" # Darker, less prominent
+    selectedLineBgColor:
+      - "#2d3f76" # Brighter blue for better contrast
+    selectedLineFgColor:
+      - "#ffcc00" # Bright yellow for high visibility
