@@ -23,7 +23,11 @@
 ################
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
+{{ if eq .chezmoi.hostname "beamthinkpad" }}
+monitor=eDP-1,1920x1200@60,auto,1.2
+{{ else }}
 monitor=HDMI-A-1,3840x2160@164.99,auto,1.5
+{{ end }}
 
 
 ###################
@@ -196,7 +200,7 @@ input {
     kb_layout = us,th
     kb_variant =
     kb_model =
-    kb_options = grp:alt_space_toggle
+    kb_options = ctrl:nocaps,grp:alt_space_toggle
     kb_rules =
 
     follow_mouse = 1
