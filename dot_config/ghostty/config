@@ -1,0 +1,8 @@
+font-family = "IosevkaTerm Nerd Font"
+font-size = 16
+
+theme = catppuccin-mocha
+macos-option-as-alt = true
+
+window-padding-x = 6
+window-padding-balance = true
