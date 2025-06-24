@@ -24,7 +24,7 @@
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
 {{ if eq .chezmoi.hostname "beamthinkpad" }}
-monitor=eDP-1,1920x1200@60,auto,1.2
+monitor=eDP-1,1920x1200@60,auto,1
 {{ else }}
 monitor=HDMI-A-1,3840x2160@164.99,auto,1.5
 {{ end }}
@@ -49,6 +49,7 @@ $menu = wofi --show drun
 # Autostart necessary processes (like notifications daemons, status bars, etc.)
 # Or execute your favorite apps at launch like this:
 
+exec-once = systemctl --user start hyprpolkitagent
 exec-once = waybar
 # exec-once = $terminal
 # exec-once = nm-applet &
