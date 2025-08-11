@@ -4,6 +4,8 @@ PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
 CHARGING="$(pmset -g batt | grep 'AC Power')"
 
 if [ "$PERCENTAGE" = "" ]; then
+  # No battery detected (likely desktop Mac), show power adapter
+  sketchybar --set "$NAME" icon="" label="AC"
   exit 0
 fi
 
