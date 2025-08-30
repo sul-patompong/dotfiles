@@ -1,6 +1,6 @@
 return {
   -- { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = { transparent_mode = true } },
-  -- { "rebelot/kanagawa.nvim", opts = { transparent = true, theme = "dragon" } },
+  { "rebelot/kanagawa.nvim", opts = { transparent = true, theme = "dragon" } },
   -- { "catppuccin/nvim", name = "catppuccin", priority = 1000, opts = { transparent_background = true } },
   -- {
   --   "savq/melange-nvim",
@@ -11,14 +11,14 @@ return {
   --     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
   --   end,
   -- },
-  {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      transparent = true,
-    },
-  },
+  -- {
+  --   "scottmckendry/cyberdream.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {
+  --     transparent = true,
+  --   },
+  -- },
   -- {
   --   "folke/tokyonight.nvim",
   --   lazy = false,
@@ -34,7 +34,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberdream",
+      colorscheme = "kanagawa",
     },
   },
 }
