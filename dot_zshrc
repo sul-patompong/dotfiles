@@ -106,3 +106,4 @@ source $ZSH/oh-my-zsh.sh
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 alias notes="cd ~/Library/Mobile\ Documents/iCloud\~md\~obsidian/Documents/NotesVault && nvim . && cd -"
 alias v="nvim"
+export PATH=$HOME/go/bin:$PATH
