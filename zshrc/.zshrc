@@ -107,5 +107,5 @@ source $ZSH/oh-my-zsh.sh
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-# asdf version manager
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# dotnet tools
+export PATH="$PATH:/home/pbeam1992/.dotnet/tools"
