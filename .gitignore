@@ -1,0 +1,4 @@
+# SSH private keys
+ssh/.ssh/*
+!ssh/.ssh/config
+!ssh/.ssh/*.pub
