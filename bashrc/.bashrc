@@ -16,3 +16,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/home/pbeam1992/.dotnet/tools"
+
+# asdf version manager
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
