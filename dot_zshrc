@@ -1,6 +1,3 @@
-# Source bashrc for Omarchy aliases and shared config
-[[ -f ~/.bashrc ]] && source ~/.bashrc
-
 eval "$(starship init zsh)"
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
