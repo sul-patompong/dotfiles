@@ -5,11 +5,3 @@ local map = LazyVim.safe_keymap_set
 
 map("n", "<C-u>", "<C-u>zz", { desc = "scroll up" })
 map("n", "<C-d>", "<C-d>zz", { desc = "scroll down" })
-
--- Trigger auto-completion with Ctrl+N
-map("i", "<C-n>", function()
-  local cmp = require("blink.cmp")
-  if not cmp.is_visible() then
-    cmp.show()
-  end
-end, { desc = "trigger completion" })
