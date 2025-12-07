@@ -1,3 +1,7 @@
+# Case-insensitive tab completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # Directories
 alias ..='cd ..'
 alias ...='cd ../..'
