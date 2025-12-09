@@ -1,0 +1,39 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  caps
+  a s d f h j k l ;
+  spc
+)
+
+(defalias
+  ;; Home Row Mods - Left Hand
+  a (tap-hold-release 200 200 a lmet)
+  s (tap-hold-release 200 200 s lalt)
+  d (tap-hold-release 200 200 d lctl)
+  f (tap-hold-release 200 200 f lsft)
+
+  ;; Home Row Mods - Right Hand
+  j (tap-hold-release 200 200 j rsft)
+  k (tap-hold-release 200 200 k rctl)
+  l (tap-hold-release 200 200 l ralt)
+  ; (tap-hold-release 200 200 ; rmet)
+
+  ;; Utility
+  escctrl (tap-hold 200 200 caps lctl)
+  nav     (tap-hold 200 200 spc (layer-toggle navigation))
+)
+
+(deflayer base
+  @escctrl
+  @a @s @d @f h @j @k @l @;
+  @nav
+)
+
+(deflayer navigation
+  _
+  _  _  _  _  lft down up rght _
+  _
+)
