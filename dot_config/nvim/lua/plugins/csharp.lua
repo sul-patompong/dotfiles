@@ -19,4 +19,13 @@ return {
       -- your configuration comes here; leave empty for default settings
     },
   },
+  -- Disable Omnisharp (use Roslyn instead)
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        omnisharp = false,
+      },
+    },
+  },
 }
