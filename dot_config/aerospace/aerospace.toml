@@ -185,11 +185,11 @@ alt-shift-l = ['join-with right', 'mode main']
 # Tiding windows to specific workspace
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'jp.naver.line.mac'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.todoist.mac.Todoist'
@@ -197,7 +197,7 @@ run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
@@ -209,19 +209,21 @@ run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
 run = 'move-node-to-workspace 4'
 
+# DBeaver dialogs - make floating
 [[on-window-detected]]
 if.app-id = 'org.jkiss.dbeaver.core.product'
-run = ['move-node-to-workspace 5']
+if.window-title-regex-substring = '(?i)(connect|connection|preferences|settings|properties|edit|create|driver|export|import|sql editor|error|warning|confirm)'
+run = ['layout floating']
 
 [[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
