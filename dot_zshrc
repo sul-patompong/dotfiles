@@ -14,11 +14,18 @@ if command -v eza &>/dev/null; then
   alias lta='lt -a'
 fi
 
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Linux
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# MacOS
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="/opt/homebrew/opt/dotnet@8/bin:$PATH"
+# export PATH="/opt/homebrew/opt/dotnet@8/bin:$PATH"
+export PATH="$PATH:/Users/pbeam1992/.dotnet/tools" 
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 eval "$(starship init zsh)"
