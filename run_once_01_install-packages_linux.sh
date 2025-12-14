@@ -26,6 +26,7 @@ packages=(
   "kanata"
   "eza"
   "lazygit"
+  "ttf-iosevka-nerd" # Added for IDE and terminal font
 )
 
 # Filter out already installed packages
