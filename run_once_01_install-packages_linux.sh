@@ -34,6 +34,7 @@ packages=(
   "azure-cli"
   "impala"
   "iwd"
+  "bluetui"
 )
 
 # Filter out already installed packages
