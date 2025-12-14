@@ -31,6 +31,7 @@ packages=(
   "1password"
   "brave-bin"
   "claude-code"
+  "azure-cli"
 )
 
 # Filter out already installed packages
