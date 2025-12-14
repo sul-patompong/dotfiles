@@ -27,6 +27,7 @@ packages=(
   "eza"
   "lazygit"
   "ttf-iosevka-nerd" # Added for IDE and terminal font
+  "ttf-jetbrains-mono-nerd"
   "ttf-sarabun" # Added as per user request
   "1password"
   "brave-bin"
