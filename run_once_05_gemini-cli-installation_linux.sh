@@ -10,9 +10,9 @@ set -e # Exit immediately if a command exits with a non-zero status.
 echo "Installing Gemini CLI..."
 
 # Install Gemini CLI
-if ! npm list -g | grep -q '@google/generative-ai/cli'; then
+if [ ! -f "$HOME/.asdf/shims/gemini" ]; then
   echo "Installing Gemini CLI..."
-  npm install -g @google/generative-ai/cli
+  npm install -g @google/gemini-cli
 else
   echo "Gemini CLI is already installed."
 fi
