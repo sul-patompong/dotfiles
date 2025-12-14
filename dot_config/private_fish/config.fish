@@ -13,6 +13,7 @@ end
 export PATH="$PATH:/home/pbeam1992/.dotnet/tools"
 export PATH="$HOME/.local/bin:$PATH"
 
-source ~/.asdf/asdf.fish
+# asdf (installed via pacman on Arch)
+fish_add_path ~/.asdf/shims
 
 starship init fish | source
