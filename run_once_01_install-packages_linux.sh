@@ -27,6 +27,9 @@ packages=(
   "eza"
   "lazygit"
   "ttf-iosevka-nerd" # Added for IDE and terminal font
+  "ttf-sarabun" # Added as per user request
+  "1password"
+  "brave-bin"
 )
 
 # Filter out already installed packages
