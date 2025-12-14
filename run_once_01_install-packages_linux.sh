@@ -30,6 +30,7 @@ packages=(
   "ttf-sarabun" # Added as per user request
   "1password"
   "brave-bin"
+  "claude-code"
 )
 
 # Filter out already installed packages
