@@ -32,6 +32,8 @@ packages=(
   "brave-bin"
   "claude-code"
   "azure-cli"
+  "impala"
+  "iwd"
 )
 
 # Filter out already installed packages
