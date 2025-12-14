@@ -22,10 +22,24 @@ packages=(
   "ripgrep"
   "starship"
   "waybar"
-  "ghostty"
+  "ghostty-git"
   "kanata"
+  "eza"
   "lazygit"
 )
 
-# Update the system and install the packages using yay
-yay -S --noconfirm "${packages[@]}"
+# Filter out already installed packages
+to_install=()
+for pkg in "${packages[@]}"; do
+  if ! pacman -Q "$pkg" &>/dev/null; then
+    to_install+=("$pkg")
+  fi
+done
+
+# Install only missing packages
+if [ ${#to_install[@]} -gt 0 ]; then
+  echo "Installing: ${to_install[*]}"
+  yay -S --noconfirm "${to_install[@]}"
+else
+  echo "All packages already installed."
+fi
