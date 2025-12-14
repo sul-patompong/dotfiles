@@ -32,4 +32,23 @@ asdf install nodejs latest
 echo "Setting latest nodejs as global..."
 asdf global nodejs latest
 
+# 5. Install global npm packages
+echo "Installing global npm packages..."
+
+# Install Gemini CLI
+if ! npm list -g | grep -q '@google/generative-ai/cli'; then
+  echo "Installing Gemini CLI..."
+  npm install -g @google/generative-ai/cli
+else
+  echo "Gemini CLI is already installed."
+fi
+
+# Install Claude CLI
+if ! npm list -g | grep -q '@anthropic-ai/cli'; then
+  echo "Installing Claude CLI..."
+  npm install -g @anthropic-ai/cli
+else
+  echo "Claude CLI is already installed."
+fi
+
 echo "asdf-vm and nodejs setup complete."
