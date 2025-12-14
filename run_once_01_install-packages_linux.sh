@@ -35,6 +35,8 @@ packages=(
   "impala"
   "iwd"
   "bluetui"
+  "bluez"
+  "bluez-utils"
 )
 
 # Filter out already installed packages

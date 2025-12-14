@@ -38,4 +38,10 @@ if ! systemctl is-enabled systemd-resolved.service &>/dev/null; then
   sudo systemctl enable --now systemd-resolved.service
 fi
 
-echo "iwd setup complete."
+# Enable bluetooth service for bluetui
+if ! systemctl is-enabled bluetooth.service &>/dev/null; then
+  echo "Enabling bluetooth.service..."
+  sudo systemctl enable --now bluetooth.service
+fi
+
+echo "iwd and bluetooth setup complete."
