@@ -39,6 +39,7 @@ packages=(
   "bluetui"
   "bluez"
   "bluez-utils"
+  "wiremix"
 )
 
 # Filter out already installed packages
