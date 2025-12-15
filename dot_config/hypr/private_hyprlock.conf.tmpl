@@ -1,0 +1,126 @@
+# Hyprlock configuration - OLED burn-in prevention screensaver
+# Features "Beam" name with cool effects
+
+general {
+    disable_loading_bar = true
+    hide_cursor = true
+    grace = 0
+    no_fade_in = false
+    no_fade_out = false
+}
+
+# Background with blur effect
+background {
+    monitor =
+    path = {{ .chezmoi.homeDir }}/wallpapers/foggy-night-wallpaper-3840x2160-supernatural-elements-supernatural-28415.jpg
+    blur_passes = 3
+    blur_size = 8
+    noise = 0.0117
+    contrast = 0.8916
+    brightness = 0.5
+    vibrancy = 0.1696
+    vibrancy_darkness = 0.0
+}
+
+# Main "BEAM" text - large and glowing
+label {
+    monitor =
+    text = BEAM
+    text_align = center
+    color = rgba(d65d0eff)
+    font_size = 120
+    font_family = JetBrainsMono Nerd Font Bold
+    rotate = 0
+
+    position = 0, 200
+    halign = center
+    valign = center
+
+    shadow_passes = 3
+    shadow_size = 12
+    shadow_color = rgba(d65d0e99)
+    shadow_boost = 1.5
+}
+
+# Subtitle with cool effect
+label {
+    monitor =
+    text = // system locked //
+    text_align = center
+    color = rgba(ebdbb2aa)
+    font_size = 16
+    font_family = JetBrainsMono Nerd Font
+    rotate = 0
+
+    position = 0, 100
+    halign = center
+    valign = center
+}
+
+# Time display
+label {
+    monitor =
+    text = cmd[update:1000] echo "$(date +"%H:%M:%S")"
+    text_align = center
+    color = rgba(ebdbb2ff)
+    font_size = 64
+    font_family = JetBrainsMono Nerd Font Bold
+    rotate = 0
+
+    position = 0, -50
+    halign = center
+    valign = center
+
+    shadow_passes = 2
+    shadow_size = 4
+    shadow_color = rgba(28282899)
+    shadow_boost = 1.2
+}
+
+# Date display
+label {
+    monitor =
+    text = cmd[update:60000] echo "$(date +"%A, %d %B %Y")"
+    text_align = center
+    color = rgba(a89984ff)
+    font_size = 20
+    font_family = JetBrainsMono Nerd Font
+    rotate = 0
+
+    position = 0, -130
+    halign = center
+    valign = center
+}
+
+# Password input field
+input-field {
+    monitor =
+    size = 300, 50
+    outline_thickness = 3
+    dots_size = 0.33
+    dots_spacing = 0.15
+    dots_center = true
+    dots_rounding = -1
+    outer_color = rgba(d65d0eff)
+    inner_color = rgba(28282899)
+    font_color = rgba(ebdbb2ff)
+    fade_on_empty = true
+    fade_timeout = 1000
+    placeholder_text = <span foreground="##a89984">Password...</span>
+    hide_input = false
+    rounding = 8
+    check_color = rgba(689d6aff)
+    fail_color = rgba(fb4934ff)
+    fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i>
+    fail_timeout = 2000
+    fail_transition = 300
+    capslock_color = rgba(fabd2fff)
+    numlock_color = -1
+    bothlock_color = -1
+    invert_numlock = false
+    swap_font_color = false
+
+    position = 0, -220
+    halign = center
+    valign = center
+}
