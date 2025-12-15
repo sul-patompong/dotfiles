@@ -22,6 +22,7 @@ packages=(
   "ripgrep"
   "starship"
   "waybar"
+  "hyprpaper"
   "ghostty-git"
   "kanata"
   "eza"
