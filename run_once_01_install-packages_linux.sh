@@ -40,6 +40,7 @@ packages=(
   "bluez"
   "bluez-utils"
   "wiremix"
+  "slack-desktop-wayland"
 )
 
 # Filter out already installed packages
@@ -57,3 +58,9 @@ if [ ${#to_install[@]} -gt 0 ]; then
 else
   echo "All packages already installed."
 fi
+
+# Set system language to English (US)
+echo "Setting system language to English..."
+sudo sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sudo locale-gen
+echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
