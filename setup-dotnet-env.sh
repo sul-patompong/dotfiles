@@ -3,6 +3,7 @@
 # Manual script to set up .NET development environment:
 # - .NET SDK 8.0 (main)
 # - .NET SDK 7.0
+# - .NET SDK Preview (for Roslyn preview features)
 # - Swagger CLI 6.5.0 (global dotnet tool)
 # - Azure CLI
 # - JetBrains Toolbox
@@ -23,6 +24,7 @@ fi
 packages=(
   "dotnet-sdk-8.0"
   "dotnet-sdk-7.0"
+  "dotnet-sdk-preview"
   "azure-cli"
   "jetbrains-toolbox"
 )
