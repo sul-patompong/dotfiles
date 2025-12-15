@@ -44,6 +44,7 @@ packages=(
   "bluez-utils"
   "wiremix"
   "slack-desktop-wayland"
+  "fish"
 )
 
 # Filter out already installed packages
@@ -67,3 +68,11 @@ echo "Setting system language to English..."
 sudo sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 sudo locale-gen
 echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf
+
+# Set fish as default shell
+if [ "$SHELL" != "/usr/bin/fish" ]; then
+  echo "Setting fish as default shell..."
+  chsh -s /usr/bin/fish
+else
+  echo "fish is already the default shell."
+fi
