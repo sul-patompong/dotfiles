@@ -45,6 +45,7 @@ packages=(
   "wiremix"
   "slack-desktop-wayland"
   "fish"
+  "swayosd"
 )
 
 # Filter out already installed packages
@@ -75,4 +76,12 @@ if [ "$SHELL" != "/usr/bin/fish" ]; then
   chsh -s /usr/bin/fish
 else
   echo "fish is already the default shell."
+fi
+
+# Enable swayosd-libinput-backend service (for caps-lock/num-lock OSD)
+if ! systemctl is-enabled swayosd-libinput-backend.service &>/dev/null; then
+  echo "Enabling swayosd-libinput-backend service..."
+  sudo systemctl enable --now swayosd-libinput-backend.service
+else
+  echo "swayosd-libinput-backend service is already enabled."
 fi
