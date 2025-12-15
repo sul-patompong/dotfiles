@@ -46,6 +46,7 @@ packages=(
   "slack-desktop-wayland"
   "fish"
   "swayosd"
+  "mako"
 )
 
 # Filter out already installed packages
