@@ -47,6 +47,8 @@ packages=(
   "fish"
   "swayosd"
   "mako"
+  "docker"
+  "docker-compose"
 )
 
 # Filter out already installed packages
@@ -85,4 +87,21 @@ if ! systemctl is-enabled swayosd-libinput-backend.service &>/dev/null; then
   sudo systemctl enable --now swayosd-libinput-backend.service
 else
   echo "swayosd-libinput-backend service is already enabled."
+fi
+
+# Enable Docker service
+if ! systemctl is-enabled docker.service &>/dev/null; then
+  echo "Enabling Docker service..."
+  sudo systemctl enable --now docker.service
+else
+  echo "Docker service is already enabled."
+fi
+
+# Add current user to docker group (allows running docker without sudo)
+if ! groups "$USER" | grep -q docker; then
+  echo "Adding $USER to docker group..."
+  sudo usermod -aG docker "$USER"
+  echo "Note: Log out and back in for docker group changes to take effect."
+else
+  echo "$USER is already in the docker group."
 fi
