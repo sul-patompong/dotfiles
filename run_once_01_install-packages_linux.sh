@@ -49,6 +49,7 @@ packages=(
   "mako"
   "docker"
   "docker-compose"
+  "power-profiles-daemon"
 )
 
 # Filter out already installed packages
@@ -104,4 +105,12 @@ if ! groups "$USER" | grep -q docker; then
   echo "Note: Log out and back in for docker group changes to take effect."
 else
   echo "$USER is already in the docker group."
+fi
+
+# Enable power-profiles-daemon service (for power profile management)
+if ! systemctl is-active power-profiles-daemon.service &>/dev/null; then
+  echo "Enabling power-profiles-daemon service..."
+  sudo systemctl enable --now power-profiles-daemon.service
+else
+  echo "power-profiles-daemon service is already active."
 fi

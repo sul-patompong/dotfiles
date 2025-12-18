@@ -15,6 +15,7 @@
     "modules-right": [
         "mpris",
         "idle_inhibitor",
+        "custom/power-profile",
         "load",
         "wireplumber",
         "backlight",
@@ -142,5 +143,14 @@
             "default": ["󰕿", "󰖀", "󰕾"]
         },
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+
+    // Power Profile
+    "custom/power-profile": {
+        "exec": "powerprofilesctl get | sed 's/power-saver/󰌪 PWR/' | sed 's/balanced/󱐋 BAL/' | sed 's/performance/󰓅 PERF/'",
+        "interval": 5,
+        "on-click": "~/.config/waybar/scripts/power-profile-cycle.sh",
+        "tooltip": true,
+        "tooltip-format": "Click to cycle power profiles"
     }
 }

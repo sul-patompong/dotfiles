@@ -98,7 +98,8 @@ button {
 #wireplumber,
 #tray,
 #mpris,
-#load {
+#load,
+#custom-power-profile {
     padding: 0 10px;
     background-color: #282828;
     color: #ebdbb2;
