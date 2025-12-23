@@ -124,10 +124,14 @@ else
   echo "TLP service is already active."
 fi
 
-# Enable TLP RDW (Radio Device Wizard) service
-if ! systemctl is-active tlp-rdw.service &>/dev/null; then
-  echo "Enabling TLP-RDW service..."
-  sudo systemctl enable --now tlp-rdw.service
+# Enable TLP RDW (Radio Device Wizard) service if it exists
+if systemctl list-unit-files tlp-rdw.service &>/dev/null; then
+  if ! systemctl is-active tlp-rdw.service &>/dev/null; then
+    echo "Enabling TLP-RDW service..."
+    sudo systemctl enable --now tlp-rdw.service
+  else
+    echo "TLP-RDW service is already active."
+  fi
 else
-  echo "TLP-RDW service is already active."
+  echo "TLP-RDW service not available (this is optional, TLP will work without it)."
 fi
