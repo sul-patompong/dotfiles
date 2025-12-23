@@ -158,6 +158,7 @@
         "exec": "~/.config/waybar/scripts/power-profile-status.sh",
         "interval": 5,
         "on-click": "~/.config/waybar/scripts/power-profile-cycle.sh",
+        "signal": 8,
         "tooltip": true,
         "return-type": "json"
     }

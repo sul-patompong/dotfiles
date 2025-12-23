@@ -32,8 +32,10 @@ esac
 
 # Check if new profile is available
 if echo "$available" | grep -q "$new_profile"; then
-    echo "$new_profile" | pkexec tee /sys/firmware/acpi/platform_profile > /dev/null
+    echo "$new_profile" | sudo tee /sys/firmware/acpi/platform_profile > /dev/null
     notify-send "Power Profile" "Switched to: $new_profile" -t 2000
+    # Signal waybar to update the power-profile module immediately
+    pkill -RTMIN+8 waybar
 else
     notify-send "Power Profile" "Profile $new_profile not available" -t 2000
 fi
