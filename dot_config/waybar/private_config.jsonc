@@ -7,13 +7,13 @@
     "spacing": 4,
     "modules-left": [
         "hyprland/workspaces",
-        "hyprland/submap"
+        "hyprland/submap",
+        "mpris"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
-        "mpris",
         "idle_inhibitor",
         "hyprland/language",
         "custom/power-profile",
