@@ -49,7 +49,8 @@ packages=(
   "mako"
   "docker"
   "docker-compose"
-  "power-profiles-daemon"
+  "tlp"
+  "tlp-rdw"
 )
 
 # Filter out already installed packages
@@ -107,10 +108,26 @@ else
   echo "$USER is already in the docker group."
 fi
 
-# Enable power-profiles-daemon service (for power profile management)
-if ! systemctl is-active power-profiles-daemon.service &>/dev/null; then
-  echo "Enabling power-profiles-daemon service..."
-  sudo systemctl enable --now power-profiles-daemon.service
+# Disable power-profiles-daemon if it exists (conflicts with TLP)
+if systemctl is-active power-profiles-daemon.service &>/dev/null; then
+  echo "Disabling power-profiles-daemon (conflicts with TLP)..."
+  sudo systemctl stop power-profiles-daemon.service
+  sudo systemctl disable power-profiles-daemon.service
+  sudo systemctl mask power-profiles-daemon.service
+fi
+
+# Enable TLP service (for advanced power management)
+if ! systemctl is-active tlp.service &>/dev/null; then
+  echo "Enabling TLP service..."
+  sudo systemctl enable --now tlp.service
 else
-  echo "power-profiles-daemon service is already active."
+  echo "TLP service is already active."
+fi
+
+# Enable TLP RDW (Radio Device Wizard) service
+if ! systemctl is-active tlp-rdw.service &>/dev/null; then
+  echo "Enabling TLP-RDW service..."
+  sudo systemctl enable --now tlp-rdw.service
+else
+  echo "TLP-RDW service is already active."
 fi
