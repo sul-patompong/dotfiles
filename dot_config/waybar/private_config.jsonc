@@ -15,6 +15,7 @@
     "modules-right": [
         "mpris",
         "idle_inhibitor",
+        "hyprland/language",
         "custom/power-profile",
         "load",
         "wireplumber",
@@ -45,6 +46,13 @@
     "hyprland/submap": {
         "format": "{}",
         "tooltip": false
+    },
+
+    // Keyboard Layout
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "🇺🇸",
+        "format-th": "🇹🇭"
     },
 
     // Media player
