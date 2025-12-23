@@ -92,6 +92,21 @@ label {
     valign = center
 }
 
+# Keyboard layout display
+label {
+    monitor =
+    text = cmd[update:1000] hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap' | sed 's/English (US)/🇺🇸 EN/; s/Thai/🇹🇭 TH/'
+    text_align = center
+    color = rgba(d79921ff)
+    font_size = 18
+    font_family = JetBrainsMono Nerd Font
+    rotate = 0
+
+    position = 0, -280
+    halign = center
+    valign = center
+}
+
 # Password input field
 input-field {
     monitor =
