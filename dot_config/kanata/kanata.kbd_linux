@@ -23,8 +23,8 @@
   ; (tap-hold-release 200 200 ; rmet)
 
   ;; Utility
-  ;; CapsLock: single tap to switch layout (Alt+Space), double tap for caps lock
-  cps (tap-dance 200 (A-spc caps))
+  ;; CapsLock: single tap to switch layout (Ctrl+Alt+Space), double tap for caps lock
+  cps (tap-dance 200 (C-A-spc caps))
   nav     (tap-hold 200 200 spc (layer-toggle navigation))
 )
 
