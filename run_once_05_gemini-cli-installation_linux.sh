@@ -5,7 +5,11 @@
 set -e # Exit immediately if a command exits with a non-zero status.
 
 # Source asdf.sh to use npm from the asdf-installed nodejs
-. "$HOME/.asdf/asdf.sh"
+if [ -f "/opt/asdf-vm/asdf.sh" ]; then
+  . "/opt/asdf-vm/asdf.sh"
+elif [ -f "$HOME/.asdf/asdf.sh" ]; then
+  . "$HOME/.asdf/asdf.sh"
+fi
 
 echo "Installing Gemini CLI..."
 

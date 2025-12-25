@@ -1,0 +1,18 @@
+[general]
+# Copy the screenshot to clipboard after saving
+copy-command = "wl-copy"
+
+# Exit satty immediately after saving without prompting
+early-exit = true
+
+# Default output path and filename pattern
+output-filename = "~/Pictures/Screenshots/screenshot-%Y-%m-%d_%H-%M-%S.png"
+
+# Initial tool to use when opening satty (arrow, crop, line, marker, blur, etc.)
+initial-tool = "arrow"
+
+# Save after copy (if false, satty will exit after copying without saving to file)
+save-after-copy = true
+
+# Show fullscreen by default
+fullscreen = false

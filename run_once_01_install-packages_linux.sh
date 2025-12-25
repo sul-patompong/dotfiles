@@ -51,6 +51,10 @@ packages=(
   "docker-compose"
   "tlp"
   "tlp-rdw"
+  "satty"
+  "grim"
+  "slurp"
+  "wl-clipboard"
 )
 
 # Filter out already installed packages
