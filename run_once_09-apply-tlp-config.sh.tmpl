@@ -1,0 +1,70 @@
+#!/bin/bash
+# Apply TLP configuration to /etc
+
+{{- if (contains "thinkpad" (lower (output "cat" "/sys/class/dmi/id/product_version" | trim))) }}
+
+echo "Applying TLP configuration..."
+
+sudo mkdir -p /etc/tlp.d
+
+sudo tee /etc/tlp.d/01-thinkpad.conf > /dev/null << 'EOF'
+# TLP configuration for ThinkPad
+# This file contains ThinkPad-specific optimizations
+
+# CPU Energy/Performance Policy (HWP)
+# performance, balance_performance, default, balance_power, power
+CPU_ENERGY_PERF_POLICY_ON_AC=balance_performance
+CPU_ENERGY_PERF_POLICY_ON_BAT=power
+
+# CPU Boost
+# 0 = disable, 1 = enable
+CPU_BOOST_ON_AC=1
+CPU_BOOST_ON_BAT=0
+
+# Platform Profile (requires kernel 5.18+)
+# performance, balanced, low-power
+PLATFORM_PROFILE_ON_AC=performance
+PLATFORM_PROFILE_ON_BAT=balanced
+
+# Battery Charge Thresholds (ThinkPad only)
+START_CHARGE_THRESH_BAT0=75
+STOP_CHARGE_THRESH_BAT0=80
+
+# Processor Intel P-State Performance
+CPU_MIN_PERF_ON_AC=0
+CPU_MAX_PERF_ON_AC=100
+CPU_MIN_PERF_ON_BAT=0
+CPU_MAX_PERF_ON_BAT=50
+
+# WiFi Power Saving
+WIFI_PWR_ON_AC=off
+WIFI_PWR_ON_BAT=on
+
+# PCIe Active State Power Management (ASPM)
+PCIE_ASPM_ON_AC=performance
+PCIE_ASPM_ON_BAT=powersupersave
+
+# Runtime Power Management for PCI(e) devices
+RUNTIME_PM_ON_AC=on
+RUNTIME_PM_ON_BAT=auto
+
+# USB Autosuspend
+USB_AUTOSUSPEND=1
+
+# Disk devices (SATA/NVMe)
+DISK_APM_LEVEL_ON_AC="254 254"
+DISK_APM_LEVEL_ON_BAT="128 128"
+
+# SATA Link Power Management (ALPM)
+SATA_LINKPWR_ON_AC=max_performance
+SATA_LINKPWR_ON_BAT=min_power
+
+# NVMe Power Management
+AHCI_RUNTIME_PM_ON_AC=auto
+AHCI_RUNTIME_PM_ON_BAT=auto
+EOF
+
+sudo systemctl restart tlp
+echo "✓ TLP configuration applied"
+
+{{- end }}
