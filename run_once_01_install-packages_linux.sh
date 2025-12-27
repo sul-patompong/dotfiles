@@ -27,6 +27,7 @@ packages=(
   "hyprlock"
   "brightnessctl"
   "sherlock-launcher-bin"
+  "hypremoji"
   "ghostty-git"
   "kanata"
   "eza"
