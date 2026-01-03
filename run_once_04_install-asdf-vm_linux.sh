@@ -16,7 +16,7 @@ echo "asdf-vm version: $(asdf --version)"
 # Install nodejs plugin
 if ! asdf plugin list 2>/dev/null | grep -q 'nodejs'; then
   echo "Installing asdf-nodejs plugin..."
-  asdf plugin-add nodejs
+  asdf plugin add nodejs
 else
   echo "asdf-nodejs plugin is already installed."
 fi
