@@ -58,6 +58,7 @@ packages=(
   "slurp"
   "wl-clipboard"
   "asdf-vm"
+  "kwallet-pam"
 )
 
 # Filter out already installed packages
