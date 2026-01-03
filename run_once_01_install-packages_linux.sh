@@ -57,6 +57,7 @@ packages=(
   "grim"
   "slurp"
   "wl-clipboard"
+  "asdf-vm"
 )
 
 # Filter out already installed packages
