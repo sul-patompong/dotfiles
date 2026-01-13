@@ -45,6 +45,8 @@ packages=(
     lazygit
     asdf
     claude-code
+    kanata
+    gemini-cli
 )
 
 for package in "${packages[@]}"; do
