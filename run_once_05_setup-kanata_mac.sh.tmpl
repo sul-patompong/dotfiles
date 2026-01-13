@@ -1,0 +1,158 @@
+#!/bin/bash
+
+set -e
+
+# kanata needs to run as root on macOS to intercept input
+# This script sets up a LaunchDaemon for kanata
+
+echo "Setting up Kanata for macOS..."
+
+# Find kanata binary
+KANATA_BIN=""
+if [ -x "/opt/homebrew/bin/kanata" ]; then
+    KANATA_BIN="/opt/homebrew/bin/kanata"
+elif [ -x "/usr/local/bin/kanata" ]; then
+    KANATA_BIN="/usr/local/bin/kanata"
+else
+    KANATA_BIN=$(which kanata)
+fi
+
+if [ -z "$KANATA_BIN" ]; then
+    echo "Kanata binary not found. Please ensure it is installed (e.g., via brew)."
+    exit 1
+fi
+
+echo "Found kanata at $KANATA_BIN"
+
+# Check for Karabiner VirtualHIDDevice Driver (Required for Kanata on macOS)
+if [ ! -d "/Applications/Karabiner-DriverKit-VirtualHIDDeviceClient.app" ] && \
+   [ ! -d "/Applications/.Karabiner-VirtualHIDDevice-Manager.app" ]; then
+    echo "ERROR: Karabiner VirtualHIDDevice driver not found."
+    echo "Kanata on macOS requires the Karabiner VirtualHIDDevice driver to inject keystrokes."
+    echo "Without it, Kanata will fail to start and may lock up your keyboard input."
+    echo ""
+    echo "Please install it by running:"
+    echo "  brew install --cask karabiner-driverkit-virtualhiddevice"
+    echo "  (Or install Karabiner-Elements)"
+    echo ""
+    echo "Unloading any existing Kanata service to restore keyboard function..."
+    sudo launchctl bootout system "/Library/LaunchDaemons/com.jtroo.kanata.plist" 2>/dev/null || true
+    
+    echo "Skipping Kanata setup to prevent input issues."
+    exit 0
+fi
+
+# Setup Karabiner VirtualHIDDevice Daemon
+echo "Setting up Karabiner VirtualHIDDevice Daemon..."
+KARABINER_DAEMON="/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon"
+KARABINER_DAEMON_PLIST="/Library/LaunchDaemons/org.pqrs.Karabiner-VirtualHIDDevice-Daemon.plist"
+
+if [ -x "$KARABINER_DAEMON" ]; then
+    echo "Found Karabiner daemon at $KARABINER_DAEMON"
+
+    # Create daemon plist
+    TMP_DAEMON_PLIST=$(mktemp)
+    cat <<EOF > "$TMP_DAEMON_PLIST"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>org.pqrs.Karabiner-VirtualHIDDevice-Daemon</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>$KARABINER_DAEMON</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>
+EOF
+
+    # Install daemon plist if changed or missing
+    if [ -f "$KARABINER_DAEMON_PLIST" ] && diff -q "$TMP_DAEMON_PLIST" "$KARABINER_DAEMON_PLIST" > /dev/null; then
+        echo "Karabiner daemon LaunchDaemon is already up to date."
+        rm "$TMP_DAEMON_PLIST"
+    else
+        echo "Installing/Updating Karabiner daemon LaunchDaemon..."
+        sudo mv "$TMP_DAEMON_PLIST" "$KARABINER_DAEMON_PLIST"
+        sudo chown root:wheel "$KARABINER_DAEMON_PLIST"
+        sudo chmod 644 "$KARABINER_DAEMON_PLIST"
+
+        # Reload daemon
+        echo "Reloading Karabiner daemon service..."
+        sudo launchctl bootout system "$KARABINER_DAEMON_PLIST" 2>/dev/null || true
+        sudo launchctl bootstrap system "$KARABINER_DAEMON_PLIST"
+    fi
+
+    # Give daemon time to start and create socket
+    sleep 2
+else
+    echo "WARNING: Karabiner daemon not found at expected location."
+    echo "Kanata may not work properly without it."
+fi
+
+CONFIG_FILE="$HOME/.config/kanata/kanata.kbd"
+PLIST_PATH="/Library/LaunchDaemons/com.jtroo.kanata.plist"
+LOG_DIR="/Library/Logs/Kanata"
+
+# Ensure log directory exists
+if [ ! -d "$LOG_DIR" ]; then
+    echo "Creating log directory $LOG_DIR..."
+    sudo mkdir -p "$LOG_DIR"
+    sudo chmod 755 "$LOG_DIR"
+fi
+
+# Create plist content
+# Note: We use the expanded $CONFIG_FILE path here because launchd needs the full path
+TMP_PLIST=$(mktemp)
+cat <<EOF > "$TMP_PLIST"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.jtroo.kanata</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>$KANATA_BIN</string>
+        <string>-c</string>
+        <string>$CONFIG_FILE</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>$LOG_DIR/kanata.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>$LOG_DIR/kanata.err.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin</string>
+    </dict>
+</dict>
+</plist>
+EOF
+
+# Compare with existing plist if it exists to avoid unnecessary reloading
+if [ -f "$PLIST_PATH" ] && diff -q "$TMP_PLIST" "$PLIST_PATH" > /dev/null; then
+    echo "Kanata LaunchDaemon is already up to date."
+    rm "$TMP_PLIST"
+else
+    echo "Installing/Updating Kanata LaunchDaemon at $PLIST_PATH..."
+    sudo mv "$TMP_PLIST" "$PLIST_PATH"
+    sudo chown root:wheel "$PLIST_PATH"
+    sudo chmod 644 "$PLIST_PATH"
+
+    # Unload if loaded, then load
+    echo "Reloading Kanata service..."
+    sudo launchctl bootout system "$PLIST_PATH" 2>/dev/null || true
+    sudo launchctl bootstrap system "$PLIST_PATH"
+fi
+
+echo "Kanata setup complete."
+echo "NOTE: If this is the first time running kanata, you may need to grant 'Input Monitoring' permissions to the 'kanata' binary in System Settings -> Privacy & Security -> Input Monitoring."
