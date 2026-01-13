@@ -1,14 +1,22 @@
 {{ if ne .chezmoi.os "darwin" }}
 Library/
 .config/aerospace/
+*_mac.sh
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
-dot_config/fontconfig/
-dot_config/hypr/
-dot_config/waybar/
-dot_config/systemd/
-dot_local/
+.config/fontconfig/
+.config/hypr/
+.config/waybar/
+.config/systemd/
+.config/mako/
+.config/satty/
+.config/wallpapers/
+.config/kwalletrc
+.local/
+etc/
+*_linux.sh
+install-todoist.sh
 {{ end }}
 
 # Generated files

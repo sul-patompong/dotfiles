@@ -15,3 +15,10 @@ set -gx DOTNET_ROOT /usr/share/dotnet
 fish_add_path ~/.dotnet/tools
 
 starship init fish | source
+
+# asdf version manager
+{{- if eq .chezmoi.os "darwin" }}
+source /opt/homebrew/opt/asdf/libexec/asdf.fish
+{{- else if eq .chezmoi.os "linux" }}
+source /opt/asdf-vm/asdf.fish
+{{- end }}

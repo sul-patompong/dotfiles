@@ -1,6 +1,7 @@
 #!/bin/bash
 # Apply TLP configuration to /etc
 
+{{- if eq .chezmoi.os "linux" }}
 {{- if (contains "thinkpad" (lower (output "cat" "/sys/class/dmi/id/product_version" | trim))) }}
 
 echo "Applying TLP configuration..."
@@ -67,4 +68,5 @@ EOF
 sudo systemctl restart tlp
 echo "✓ TLP configuration applied"
 
+{{- end }}
 {{- end }}
