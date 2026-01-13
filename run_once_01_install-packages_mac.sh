@@ -21,15 +21,15 @@ fi
 
 # Update Homebrew
 echo "==> Updating Homebrew..."
-brew update
+brew update || echo "Warning: Homebrew update failed, continuing..."
 
 # Add Anthropic tap for Claude Code
 echo "==> Adding Anthropic tap..."
-brew tap anthropics/claude 2>/dev/null || echo "Anthropic tap already added"
+brew tap anthropics/claude || echo "Warning: Failed to tap anthropics/claude, continuing..."
 
 # Add nikitabobko tap for AeroSpace
 echo "==> Adding nikitabobko tap for AeroSpace..."
-brew tap nikitabobko/tap 2>/dev/null || echo "nikitabobko tap already added"
+brew tap nikitabobko/tap || echo "Warning: Failed to tap nikitabobko/tap, continuing..."
 
 # Install packages
 echo "==> Installing packages..."
