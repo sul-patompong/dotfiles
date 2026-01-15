@@ -36,13 +36,9 @@ else
     echo "==> asdf-nodejs plugin is already installed"
 fi
 
-# Install latest nodejs
-echo "==> Installing latest version of nodejs..."
-asdf install nodejs latest
-
-# Set latest nodejs as global
-echo "==> Setting latest nodejs as global..."
-asdf global nodejs latest
+# Install versions from .tool-versions
+echo "==> Installing versions from .tool-versions..."
+asdf install
 
 echo "==> nodejs setup complete"
 echo "    Node version: $(asdf current nodejs 2>/dev/null | awk '{print $2}')"
