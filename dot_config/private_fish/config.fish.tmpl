@@ -2,6 +2,7 @@
 {{- if eq .chezmoi.os "darwin" }}
 source /opt/homebrew/opt/asdf/libexec/asdf.fish
 fish_add_path --prepend --move ~/.asdf/shims
+fish_add_path /opt/homebrew/opt/libpq/bin
 {{- else if eq .chezmoi.os "linux" }}
 source /opt/asdf-vm/asdf.fish
 {{- end }}
