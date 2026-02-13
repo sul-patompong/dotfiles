@@ -30,7 +30,25 @@
                         ]
                     },
                     {
-                        "description": "Right Command: Input source switch on tap, Command on hold",
+                        "description": "Left Control to Hyper Key",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Right Command to F19",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -40,14 +58,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_command",
-                                        "lazy": true
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "spacebar",
-                                        "modifiers": ["left_control"]
+                                        "key_code": "f19"
                                     }
                                 ]
                             }
