@@ -27,10 +27,6 @@ brew update || echo "Warning: Homebrew update failed, continuing..."
 echo "==> Adding Anthropic tap..."
 brew tap anthropics/claude || echo "Warning: Failed to tap anthropics/claude, continuing..."
 
-# Add nikitabobko tap for AeroSpace
-echo "==> Adding nikitabobko tap for AeroSpace..."
-brew tap nikitabobko/tap || echo "Warning: Failed to tap nikitabobko/tap, continuing..."
-
 # Install packages
 echo "==> Installing packages..."
 packages=(
@@ -63,7 +59,7 @@ done
 echo "==> Installing applications..."
 apps=(
     ghostty
-    aerospace
+    raycast
 )
 
 for app in "${apps[@]}"; do
