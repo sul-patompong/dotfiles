@@ -23,10 +23,6 @@ fi
 echo "==> Updating Homebrew..."
 brew update || echo "Warning: Homebrew update failed, continuing..."
 
-# Add Anthropic tap for Claude Code
-echo "==> Adding Anthropic tap..."
-brew tap anthropics/claude || echo "Warning: Failed to tap anthropics/claude, continuing..."
-
 # Install packages
 echo "==> Installing packages..."
 packages=(
@@ -39,7 +35,6 @@ packages=(
     eza
     lazygit
     asdf
-    claude-code
     gemini-cli
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -57,6 +52,7 @@ done
 # Install applications
 echo "==> Installing applications..."
 apps=(
+    claude-code
     ghostty
     raycast
     karabiner-elements
