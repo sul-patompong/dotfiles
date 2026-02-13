@@ -38,7 +38,6 @@ packages=(
     neovim
     ripgrep
     fzf
-    fish
     starship
     tmux
     eza
@@ -47,6 +46,8 @@ packages=(
     claude-code
     kanata
     gemini-cli
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 for package in "${packages[@]}"; do

@@ -1,0 +1,19 @@
+# Autocompletion
+autoload -Uz compinit && compinit
+
+# eza aliases
+if (( $+commands[eza] )); then
+    alias ls='eza -lh --group-directories-first --icons=auto'
+    alias lsa='eza -lah --group-directories-first --icons=auto'
+    alias lt='eza --tree --level=2 --long --icons --git'
+    alias lta='eza --tree --level=2 --long --icons --git -a'
+fi
+
+# Zsh plugins
+{{- if eq .chezmoi.os "darwin" }}
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- end }}
+
+# Initialize starship prompt
+eval "$(starship init zsh)"
