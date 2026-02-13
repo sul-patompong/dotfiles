@@ -3,7 +3,7 @@
 )
 
 (defsrc
-  
+
   caps
   a s d f h j k l ;
   spc

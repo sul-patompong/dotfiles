@@ -40,7 +40,6 @@ packages=(
     lazygit
     asdf
     claude-code
-    kanata
     gemini-cli
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -60,6 +59,7 @@ echo "==> Installing applications..."
 apps=(
     ghostty
     raycast
+    karabiner-elements
 )
 
 for app in "${apps[@]}"; do

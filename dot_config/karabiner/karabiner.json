@@ -1,0 +1,60 @@
+{
+    "profiles": [
+        {
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" },
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Caps Lock: Esc on tap, Ctrl on hold",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Right Command: Input source switch on tap, Command on hold",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "right_command",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_command",
+                                        "lazy": true
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
