@@ -1,5 +1,9 @@
 # Autocompletion
 autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Navigation
+alias ..='cd ..'
 
 # eza aliases
 if (( $+commands[eza] )); then
@@ -17,4 +21,4 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Initialize starship prompt
 eval "$(starship init zsh)"
-eval "$({{ .chezmoi.homeDir }}/.local/bin/mise activate zsh)"
+eval "$(mise activate zsh)"
