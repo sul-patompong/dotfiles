@@ -57,7 +57,6 @@ packages=(
   "grim"
   "slurp"
   "wl-clipboard"
-  "asdf-vm"
   "kwallet-pam"
 )
 

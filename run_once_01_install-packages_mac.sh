@@ -34,8 +34,6 @@ packages=(
     tmux
     eza
     lazygit
-    asdf
-    gemini-cli
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
