@@ -34,6 +34,7 @@ packages=(
     tmux
     eza
     lazygit
+    mise
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
@@ -79,5 +80,9 @@ for font in "${fonts[@]}"; do
         brew install --cask "$font"
     fi
 done
+
+# Install global runtimes via mise
+echo "==> Installing global runtimes via mise..."
+mise use --global node@latest
 
 echo "==> macOS development environment setup complete!"
