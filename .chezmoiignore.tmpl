@@ -1,3 +1,5 @@
+archive/
+
 {{ if ne .chezmoi.os "darwin" }}
 Library/
 .config/aerospace/
@@ -5,16 +7,6 @@ Library/
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
-.config/fontconfig/
-.config/hypr/
-.config/waybar/
-.config/systemd/
-.config/mako/
-.config/satty/
-.config/wallpapers/
-.config/kwalletrc
-.local/
-etc/
 .chezmoiscripts/linux/**
 {{ end }}
 
