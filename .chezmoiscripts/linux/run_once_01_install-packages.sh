@@ -8,7 +8,6 @@ fi
 
 # --- COPR Repos ---
 sudo dnf copr enable -y atim/starship
-sudo dnf copr enable -y dejan/lazygit
 sudo dnf copr enable -y pgdev/ghostty
 
 # --- Third-party repos ---
@@ -24,7 +23,7 @@ sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.co
 packages=(
   git neovim tmux zsh fzf ripgrep eza
   zsh-autosuggestions zsh-syntax-highlighting
-  starship lazygit ghostty
+  starship ghostty
   1password brave-browser
 )
 
@@ -35,6 +34,8 @@ if ! command -v mise &> /dev/null; then
   curl https://mise.run | sh
 fi
 mise use --global node@latest
+mise use --global go@latest
+mise use --global lazygit@latest
 
 # --- Nerd Font ---
 FONT_DIR="$HOME/.local/share/fonts"
