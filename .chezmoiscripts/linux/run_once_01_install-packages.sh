@@ -17,25 +17,28 @@ sudo sh -c 'echo -e "[1password]\nname=1Password\nbaseurl=https://downloads.1pas
 
 # Brave Browser
 sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
 # --- Install packages ---
 packages=(
-  git neovim tmux zsh fzf ripgrep eza
+  git neovim tmux zsh fzf ripgrep
   zsh-autosuggestions zsh-syntax-highlighting
   starship ghostty
   1password brave-browser
 )
 
-sudo dnf install -y "${packages[@]}"
+sudo dnf install -y --skip-unavailable "${packages[@]}"
 
 # --- mise (runtime manager) ---
-if ! command -v mise &> /dev/null; then
+MISE="$HOME/.local/bin/mise"
+if [ ! -f "$MISE" ]; then
   curl https://mise.run | sh
 fi
-mise use --global node@latest
-mise use --global go@latest
-mise use --global lazygit@latest
+eval "$($MISE activate bash)"
+$MISE use --global node@latest
+$MISE use --global go@latest
+$MISE use --global lazygit@latest
+$MISE use --global eza@latest
 
 # --- Nerd Font ---
 FONT_DIR="$HOME/.local/share/fonts"
@@ -48,6 +51,7 @@ fi
 
 # --- Claude Code ---
 if ! command -v claude &> /dev/null; then
+  eval "$($MISE activate bash)"
   npm install -g @anthropic-ai/claude-code
 fi
 
