@@ -39,6 +39,7 @@ $MISE use --global node@latest
 $MISE use --global go@latest
 $MISE use --global lazygit@latest
 $MISE use --global eza@latest
+$MISE use --global npm:@anthropic-ai/claude-code@latest
 
 # --- Nerd Font ---
 FONT_DIR="$HOME/.local/share/fonts"
@@ -47,12 +48,6 @@ if [ ! -d "$FONT_DIR/IosevkaTermNerdFont" ]; then
   curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.tar.xz \
     | tar -xJ -C "$FONT_DIR/IosevkaTermNerdFont"
   fc-cache -fv
-fi
-
-# --- Claude Code ---
-if ! command -v claude &> /dev/null; then
-  eval "$($MISE activate bash)"
-  npm install -g @anthropic-ai/claude-code
 fi
 
 # --- Post-install setup ---
