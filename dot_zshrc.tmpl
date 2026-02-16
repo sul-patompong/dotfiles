@@ -16,10 +16,11 @@ if (( $+commands[eza] )); then
 fi
 
 # Zsh plugins
-{{- if eq .chezmoi.os "darwin" }}
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-{{- end }}
+for plugin in zsh-autosuggestions/zsh-autosuggestions.zsh zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
+    for dir in /opt/homebrew/share /usr/share; do
+        [[ -f "$dir/$plugin" ]] && source "$dir/$plugin" && break
+    done
+done
 
 # Initialize starship prompt
 eval "$(starship init zsh)"

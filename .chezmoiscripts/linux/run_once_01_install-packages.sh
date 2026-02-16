@@ -23,20 +23,35 @@ sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.co
 # --- Install packages ---
 packages=(
   git neovim tmux zsh fzf ripgrep eza
+  zsh-autosuggestions zsh-syntax-highlighting
   starship lazygit ghostty
   1password brave-browser
-  jetbrains-mono-fonts
 )
 
 sudo dnf install -y "${packages[@]}"
+
+# --- mise (runtime manager) ---
+if ! command -v mise &> /dev/null; then
+  curl https://mise.run | sh
+fi
+mise use --global node@latest
+
+# --- Nerd Font ---
+FONT_DIR="$HOME/.local/share/fonts"
+if [ ! -d "$FONT_DIR/IosevkaTermNerdFont" ]; then
+  mkdir -p "$FONT_DIR/IosevkaTermNerdFont"
+  curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.tar.xz \
+    | tar -xJ -C "$FONT_DIR/IosevkaTermNerdFont"
+  fc-cache -fv
+fi
+
+# --- Claude Code ---
+if ! command -v claude &> /dev/null; then
+  npm install -g @anthropic-ai/claude-code
+fi
 
 # --- Post-install setup ---
 # Set zsh as default shell
 if [ "$SHELL" != "/usr/bin/zsh" ]; then
   chsh -s /usr/bin/zsh
 fi
-
-# --- Manual installs (not in repos) ---
-# Kanata: cargo install kanata (or download from GitHub releases)
-# Claude Code: npm install -g @anthropic-ai/claude-code
-# Docker: sudo dnf install docker docker-compose && sudo systemctl enable --now docker.service
