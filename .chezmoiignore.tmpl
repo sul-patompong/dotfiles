@@ -1,7 +1,7 @@
 {{ if ne .chezmoi.os "darwin" }}
 Library/
 .config/aerospace/
-*_mac.sh
+.chezmoiscripts/darwin/**
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
@@ -15,8 +15,7 @@ Library/
 .config/kwalletrc
 .local/
 etc/
-*_linux.sh
-install-todoist.sh
+.chezmoiscripts/linux/**
 {{ end }}
 
 # Generated files

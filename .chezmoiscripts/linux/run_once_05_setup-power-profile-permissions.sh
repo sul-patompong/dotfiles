@@ -26,10 +26,10 @@ sudo chmod 0440 "$SUDOERS_FILE"
 
 # Verify the sudoers file is valid
 if sudo visudo -cf "$SUDOERS_FILE"; then
-    echo "✓ Power profile permissions configured successfully"
+    echo "Power profile permissions configured successfully"
     echo "  User '$USER' can now switch power profiles without password"
 else
-    echo "✗ Error: Invalid sudoers configuration"
+    echo "Error: Invalid sudoers configuration"
     sudo rm -f "$SUDOERS_FILE"
     exit 1
 fi
