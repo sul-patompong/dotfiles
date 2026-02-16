@@ -25,3 +25,9 @@ Host github.com
 Host dc2-gitlab.dol.go.th
   PreferredAuthentications publickey
   IdentityFile ~/.ssh/7peaks
+
+Host home
+	HostName 10.7.14.21
+	User pbeam1992
+	IdentityFile ~/.ssh/714Server
+	IdentitiesOnly yes
