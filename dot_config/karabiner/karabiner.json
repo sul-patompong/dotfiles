@@ -30,7 +30,7 @@
                         ]
                     },
                     {
-                        "description": "Left Control to Hyper Key",
+                        "description": "Left Control to Meh Key (Ctrl+Cmd+Opt)",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -40,8 +40,8 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                        "key_code": "left_command",
+                                        "modifiers": ["left_control", "left_option"]
                                     }
                                 ]
                             }
