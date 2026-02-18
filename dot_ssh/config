@@ -31,3 +31,4 @@ Host home
 	User pbeam1992
 	IdentityFile ~/.ssh/714Server
 	IdentitiesOnly yes
+	LocalForward 8421 localhost:8421
