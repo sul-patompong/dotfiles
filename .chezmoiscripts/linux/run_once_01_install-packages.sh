@@ -21,12 +21,3 @@ $MISE use --global go@latest
 $MISE use --global lazygit@latest
 $MISE use --global eza@latest
 $MISE use --global npm:@anthropic-ai/claude-code@latest
-
-# --- Nerd Font ---
-FONT_DIR="$HOME/.local/share/fonts"
-if [ ! -d "$FONT_DIR/IosevkaTermNerdFont" ]; then
-  mkdir -p "$FONT_DIR/IosevkaTermNerdFont"
-  curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/IosevkaTerm.tar.xz \
-    | tar -xJ -C "$FONT_DIR/IosevkaTermNerdFont"
-  fc-cache -fv
-fi
