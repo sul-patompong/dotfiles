@@ -6,7 +6,6 @@ Host 714Workstation
 {{ if eq .chezmoi.os "darwin" }}
 Host *
 	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-{{ end }}
 
 Host bitbucket-7peaks
   HostName bitbucket.org
@@ -27,3 +26,20 @@ Host github-sul-patompong
   HostName github.com
   User git
   IdentityFile ~/.ssh/github-sul-patompong.pub
+{{ else }}
+Host bitbucket-7peaks
+  HostName bitbucket.org
+  User git
+
+Host bitbucket-appconduct
+  HostName bitbucket.org
+  User git
+
+Host gitlab-appconduct
+  HostName gitlab.com
+  User git
+
+Host github-sul-patompong
+  HostName github.com
+  User git
+{{ end }}
