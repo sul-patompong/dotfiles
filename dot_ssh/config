@@ -1,34 +1,26 @@
-Host gitlab.com
-	HostName gitlab.com
-	User git
-	IdentityFile ~/.ssh/GitLab-AppConduct
-	IdentitiesOnly yes
-  
-Host bitbucket.org
-	HostName bitbucket.org
-	User git
-	IdentityFile ~/.ssh/appconduct
-	IdentitiesOnly yes
-
-Host bitbucket.org-7peaks
-	HostName bitbucket.org
-	User git
-	IdentityFile ~/.ssh/7peaks
-	IdentitiesOnly yes
-	
-Host github.com
-	HostName github.com
-	User git
-	IdentityFile ~/.ssh/github-sul-patompong
-	IdentitiesOnly yes
-
-Host dc2-gitlab.dol.go.th
-  PreferredAuthentications publickey
-  IdentityFile ~/.ssh/7peaks
-
-Host home
-	HostName 10.7.14.21
+Host 714Workstation
+	HostName 714Workstation
 	User pbeam1992
-	IdentityFile ~/.ssh/714Server
-	IdentitiesOnly yes
-	LocalForward 8421 localhost:8421
+
+Host *
+	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+Host bitbucket-7peaks
+  HostName bitbucket.org
+  User git
+  IdentityFile ~/.ssh/bitbucket-7peaks.pub
+
+Host bitbucket-appconduct
+  HostName bitbucket.org
+  User git
+  IdentityFile ~/.ssh/bitbucket-appconduct.pub
+
+Host gitlab-appconduct
+  HostName gitlab.com
+  User git
+  IdentityFile ~/.ssh/gitlab-appconduct.pub
+
+Host github-sul-patompong
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github-sul-patompong.pub
