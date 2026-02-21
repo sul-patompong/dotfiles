@@ -4,6 +4,7 @@ export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"
 # Autocompletion
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu select
 
 # Navigation
 alias ..='cd ..'
