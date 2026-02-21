@@ -41,3 +41,17 @@ install_nerd_font() {
 }
 
 install_nerd_font "VictorMono"
+
+# --- Ghostty terminal ---
+if ! command -v ghostty &>/dev/null; then
+  echo "==> Installing Ghostty..."
+  sudo dnf install -y ghostty
+fi
+
+# --- Brave Browser ---
+if ! command -v brave-browser &>/dev/null; then
+  echo "==> Installing Brave Browser..."
+  sudo dnf install -y dnf-plugins-core
+  sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+  sudo dnf install -y brave-browser
+fi
