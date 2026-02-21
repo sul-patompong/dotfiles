@@ -1,0 +1,23 @@
+Host 714Workstation
+	HostName 714Workstation
+	User pbeam1992
+
+Host bitbucket-7peaks
+  HostName bitbucket.org
+  User git
+  IdentityFile ~/.ssh/bitbucket-7peaks
+
+Host bitbucket-appconduct
+  HostName bitbucket.org
+  User git
+  IdentityFile ~/.ssh/bitbucket-appconduct
+
+Host gitlab-appconduct
+  HostName gitlab.com
+  User git
+  IdentityFile ~/.ssh/gitlab-appconduct
+
+Host github-sul-patompong
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github-sul-patompong
