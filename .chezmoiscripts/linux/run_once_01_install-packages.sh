@@ -45,6 +45,7 @@ install_nerd_font "VictorMono"
 # --- Ghostty terminal ---
 if ! command -v ghostty &>/dev/null; then
   echo "==> Installing Ghostty..."
+  sudo dnf copr enable -y scottames/ghostty
   sudo dnf install -y ghostty
 fi
 
