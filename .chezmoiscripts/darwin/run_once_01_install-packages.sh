@@ -70,6 +70,7 @@ done
 echo "==> Installing fonts..."
 fonts=(
     font-iosevka-term-nerd-font
+    font-victor-mono-nerd-font
 )
 
 for font in "${fonts[@]}"; do

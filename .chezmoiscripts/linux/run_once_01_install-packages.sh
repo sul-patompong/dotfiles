@@ -21,3 +21,23 @@ $MISE use --global go@latest
 $MISE use --global lazygit@latest
 $MISE use --global eza@latest
 $MISE use --global npm:@anthropic-ai/claude-code@latest
+
+# --- Nerd Fonts ---
+FONT_DIR="$HOME/.local/share/fonts"
+mkdir -p "$FONT_DIR"
+
+install_nerd_font() {
+  local font_name="$1"
+  if fc-list | grep -qi "$font_name"; then
+    echo "==> $font_name already installed, skipping."
+    return
+  fi
+  echo "==> Installing $font_name Nerd Font..."
+  local url
+  url=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest \
+    | grep "browser_download_url" | grep "${font_name}.tar.xz" | cut -d '"' -f 4)
+  curl -fsSL "$url" | tar -xJ -C "$FONT_DIR"
+  fc-cache -f "$FONT_DIR"
+}
+
+install_nerd_font "VictorMono"
