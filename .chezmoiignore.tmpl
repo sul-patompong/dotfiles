@@ -8,8 +8,9 @@ Library/
 
 {{ if ne .chezmoi.os "linux" }}
 .chezmoiscripts/linux/**
-.ssh/
 {{ end }}
+
+.ssh/
 
 # Generated files
 dot_config/nvim/lazy-lock.json
