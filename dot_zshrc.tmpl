@@ -1,6 +1,13 @@
 # PATH
 export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH"
 
+{{ if eq .chezmoi.os "linux" -}}
+# 1Password SSH agent (only when not using a forwarded agent)
+if [[ -z "$SSH_AUTH_SOCK" || "$SSH_AUTH_SOCK" == *".1password"* ]]; then
+  export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+fi
+{{ end -}}
+
 # Autocompletion
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
