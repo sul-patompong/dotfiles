@@ -1,6 +1,7 @@
 Host 714Workstation
 	HostName 714Workstation
 	User pbeam1992
+  IdentityFile ~/.ssh/714Workstation
 
 Host bitbucket-7peaks
   HostName bitbucket.org
