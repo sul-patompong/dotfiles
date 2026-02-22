@@ -1,4 +1,7 @@
-{{- $machineType := promptStringOnce . "machineType" "Machine type (workstation/server)" -}}
+{{- $machineType := "workstation" -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{-   $machineType = promptStringOnce . "machineType" "Machine type (workstation/server)" -}}
+{{- end -}}
 
 [data]
     machineType = {{ $machineType | quote }}
