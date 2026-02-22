@@ -1,0 +1,4 @@
+{{- $machineType := promptStringOnce . "machineType" "Machine type (workstation/server)" -}}
+
+[data]
+    machineType = {{ $machineType | quote }}

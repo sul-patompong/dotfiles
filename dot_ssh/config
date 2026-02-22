@@ -1,6 +1,7 @@
 Host 714Workstation
 	HostName 714Workstation
 	User pbeam1992
+  LocalForward 8421 localhost:8421
   IdentityFile ~/.ssh/714Workstation
 
 Host bitbucket-7peaks

@@ -22,6 +22,7 @@ $MISE use --global lazygit@latest
 $MISE use --global eza@latest
 $MISE use --global npm:@anthropic-ai/claude-code@latest
 
+{{ if eq .machineType "workstation" -}}
 # --- Nerd Fonts ---
 FONT_DIR="$HOME/.local/share/fonts"
 mkdir -p "$FONT_DIR"
@@ -54,3 +55,4 @@ if ! command -v brave-browser &>/dev/null; then
   echo "==> Installing Brave Browser..."
   curl -fsS https://dl.brave.com/install.sh | sh
 fi
+{{- end }}

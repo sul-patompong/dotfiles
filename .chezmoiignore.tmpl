@@ -10,5 +10,12 @@ Library/
 .chezmoiscripts/linux/**
 {{ end }}
 
+# Workstation-only (GUI) configs — skip on servers
+{{ if eq .machineType "server" }}
+dot_config/ghostty/**
+dot_config/kanata/**
+dot_local/share/applications/**
+{{ end }}
+
 # Generated files
 dot_config/nvim/lazy-lock.json
