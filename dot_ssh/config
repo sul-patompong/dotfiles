@@ -1,5 +1,5 @@
-Host 714Workstation
-	HostName 714Workstation
+Host 10.7.14.21
+	HostName 10.7.14.21
 	User pbeam1992
   LocalForward 8421 localhost:8421
   IdentityFile ~/.ssh/714Workstation
