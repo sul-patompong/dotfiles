@@ -25,6 +25,7 @@ for plugin in zsh-autosuggestions/zsh-autosuggestions.zsh zsh-syntax-highlightin
         [[ -f "$dir/$plugin" ]] && source "$dir/$plugin" && break
     done
 done
+bindkey '^F' autosuggest-accept
 
 # Initialize starship prompt
 eval "$(starship init zsh)"
