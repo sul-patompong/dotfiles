@@ -3,12 +3,17 @@ archive/
 {{ if ne .chezmoi.os "darwin" }}
 Library/
 .config/aerospace/
+.config/karabiner/
 .chezmoiscripts/darwin/**
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
+.config/kanata/
 .chezmoiscripts/linux/**
 {{ end }}
+
+# lazygit uses XDG path on both OSes now; Library copy is redundant
+Library/Application Support/lazygit/
 
 # Workstation-only (GUI) configs — skip on servers
 {{ if eq .machineType "server" }}
