@@ -258,6 +258,10 @@ if.app-id = 'com.electron.dockerdesktop'
 run = ['layout floating']
 
 [[on-window-detected]]
+if.app-id = 'cc.ffitch.shottr'
+run = ['layout floating']
+
+[[on-window-detected]]
 if.app-id = 'com.parallels.desktop.console'
 run = ['move-node-to-workspace 8']
 
