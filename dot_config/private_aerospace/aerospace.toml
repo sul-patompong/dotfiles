@@ -139,10 +139,27 @@ run = 'move-node-to-workspace o'
 if.app-id = 'com.figma.Desktop'
 run = 'move-node-to-workspace p'
 
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace p'
+
+[[on-window-detected]]
+if.app-id = 'com.TickTick.task.mac'
+run = 'move-node-to-workspace p'
+
 # WS 7 — dev tools
 [[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
 run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+if.app-id = 'com.axosoft.gitkraken'
+run = 'move-node-to-workspace 7'
+
+# WS 8 — browser (Edge)
+[[on-window-detected]]
+if.app-id = 'com.microsoft.edgemac'
+run = 'move-node-to-workspace 8'
 
 # WS 0 — VMs
 [[on-window-detected]]
