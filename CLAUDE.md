@@ -1,5 +1,13 @@
 # Chezmoi dotfiles
 
+## AeroSpace config organization
+
+When editing `dot_config/private_aerospace/aerospace.toml`, keep it organized:
+
+- `on-window-detected` rules are grouped by workspace with a `# WS x — label` comment, followed by a `# Floating` section at the end
+- Single-command rules use `run = 'string'`, not `run = ['array']`
+- No boilerplate/template comments — only meaningful comments
+
 ## Karabiner config formatting
 
 When editing `dot_config/karabiner/karabiner.json`, match the format Karabiner uses when it saves the file, to avoid diffs on `chezmoi apply`:
