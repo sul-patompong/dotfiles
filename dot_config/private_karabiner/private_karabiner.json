@@ -1,16 +1,12 @@
 {
     "profiles": [
         {
-            "name": "Default profile",
-            "selected": true,
-            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" },
             "complex_modifications": {
                 "rules": [
                     {
                         "description": "Caps Lock: Esc on tap, Ctrl on hold",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": { "optional": ["any"] }
@@ -21,19 +17,15 @@
                                         "lazy": true
                                     }
                                 ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "escape"
-                                    }
-                                ]
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "Left Control to Meh Key (Ctrl+Cmd+Opt)",
+                        "description": "Left Control / Right Option / A / Semicolon to Meh Key (Ctrl+Cmd+Opt)",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "left_control",
                                     "modifiers": { "optional": ["any"] }
@@ -43,29 +35,40 @@
                                         "key_code": "left_command",
                                         "modifiers": ["left_control", "left_option"]
                                     }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Right Command to F19",
-                        "manipulators": [
+                                ],
+                                "type": "basic"
+                            },
                             {
-                                "type": "basic",
                                 "from": {
-                                    "key_code": "right_command",
+                                    "key_code": "right_option",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "f19"
+                                        "key_code": "left_command",
+                                        "modifiers": ["left_control", "left_option"]
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             }
                         ]
                     }
                 ]
-            }
+            },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 3616,
+                        "vendor_id": 13364
+                    },
+                    "ignore": false
+                }
+            ],
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
         }
     ]
 }
