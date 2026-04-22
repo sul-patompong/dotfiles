@@ -37,6 +37,7 @@ packages=(
     mise
     zsh-autosuggestions
     zsh-syntax-highlighting
+    FelixKratz/formulae/borders
 )
 
 for package in "${packages[@]}"; do

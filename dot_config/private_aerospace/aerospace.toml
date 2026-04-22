@@ -1,8 +1,6 @@
 after-login-command = []
 
-after-startup-command = [
-  'exec-and-forget borders active_color=0xffff8019 inactive_color=0xff282828 width=3.0',
-]
+after-startup-command = []
 
 exec-on-workspace-change = []
 
@@ -16,18 +14,19 @@ default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
 automatically-unhide-macos-hidden-apps = false
 
 [key-mapping]
 preset = 'qwerty'
 
 [gaps]
-inner.horizontal = 8
-inner.vertical = 8
-outer.left = 8
-outer.bottom = 8
-outer.top = 8
-outer.right = 8
+inner.horizontal = 12
+inner.vertical = 12
+outer.left = 12
+outer.bottom = 12
+outer.top = 12
+outer.right = 12
 
 # ── Main mode ──────────────────────────────────────────────────────────────────
 [mode.main.binding]
