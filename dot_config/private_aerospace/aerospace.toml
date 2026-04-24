@@ -66,14 +66,14 @@ cmd-alt-ctrl-9 = 'workspace 9'
 cmd-alt-ctrl-0 = 'workspace 0'
 
 # Move window to workspace
-cmd-alt-ctrl-shift-u = 'move-node-to-workspace u'
-cmd-alt-ctrl-shift-i = 'move-node-to-workspace i'
-cmd-alt-ctrl-shift-o = 'move-node-to-workspace o'
-cmd-alt-ctrl-shift-p = 'move-node-to-workspace p'
-cmd-alt-ctrl-shift-7 = 'move-node-to-workspace 7'
-cmd-alt-ctrl-shift-8 = 'move-node-to-workspace 8'
-cmd-alt-ctrl-shift-9 = 'move-node-to-workspace 9'
-cmd-alt-ctrl-shift-0 = 'move-node-to-workspace 0'
+# cmd-alt-ctrl-shift-u = 'move-node-to-workspace u'
+# cmd-alt-ctrl-shift-i = 'move-node-to-workspace i'
+# cmd-alt-ctrl-shift-o = 'move-node-to-workspace o'
+# cmd-alt-ctrl-shift-p = 'move-node-to-workspace p'
+# cmd-alt-ctrl-shift-7 = 'move-node-to-workspace 7'
+# cmd-alt-ctrl-shift-8 = 'move-node-to-workspace 8'
+# cmd-alt-ctrl-shift-9 = 'move-node-to-workspace 9'
+# cmd-alt-ctrl-shift-0 = 'move-node-to-workspace 0'
 
 # Monitor
 cmd-alt-ctrl-tab = 'workspace-back-and-forth'
