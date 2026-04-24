@@ -102,6 +102,16 @@ sketchybar --add item battery right \
     update_freq=120 \
   --subscribe battery system_woke power_source_change
 
+# ── Right: WiFi / Ethernet ────────────────────────────────────────────────
+sketchybar --add item wifi right \
+  --set wifi \
+    icon.font="IosevkaTerm Nerd Font:Regular:16.0" \
+    label.font="IosevkaTerm Nerd Font:Regular:13.0" \
+    background.color=$ITEM_BG \
+    script="$PLUGIN_DIR/wifi.sh" \
+    update_freq=10 \
+  --subscribe wifi wifi_change system_woke
+
 
 # ── Fullscreen indicator (hidden by default) ───────────────────────────────
 sketchybar --add item fullscreen_indicator center \
