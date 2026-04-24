@@ -81,6 +81,7 @@ cmd-alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # Modes
 cmd-alt-ctrl-shift-semicolon = 'mode service'
+cmd-alt-ctrl-w = 'mode window'
 
 # ── Service mode ───────────────────────────────────────────────────────────────
 [mode.service.binding]
@@ -92,6 +93,46 @@ cmd-alt-ctrl-shift-h = ['join-with left', 'mode main']
 cmd-alt-ctrl-shift-j = ['join-with down', 'mode main']
 cmd-alt-ctrl-shift-k = ['join-with up', 'mode main']
 cmd-alt-ctrl-shift-l = ['join-with right', 'mode main']
+
+# ── Window mode ────────────────────────────────────────────────────────────────
+[mode.window.binding]
+
+# # Focus (exits mode — usually focus once then continue)
+# h = ['focus left', 'mode main']
+# j = ['focus down', 'mode main']
+# k = ['focus up', 'mode main']
+# l = ['focus right', 'mode main']
+
+# Move (stays in mode — often repeated)
+h = ['move left', 'mode window']
+j = ['move down', 'mode window']
+k = ['move up', 'mode window']
+l = ['move right', 'mode window']
+
+cmd-alt-ctrl-u = 'move-node-to-workspace u'
+cmd-alt-ctrl-i = 'move-node-to-workspace i'
+cmd-alt-ctrl-o = 'move-node-to-workspace o'
+cmd-alt-ctrl-p = 'move-node-to-workspace p'
+cmd-alt-ctrl-7 = 'move-node-to-workspace 7'
+cmd-alt-ctrl-8 = 'move-node-to-workspace 8'
+cmd-alt-ctrl-9 = 'move-node-to-workspace 9'
+cmd-alt-ctrl-0 = 'move-node-to-workspace 0'
+
+# Resize (stays in mode — often repeated)
+minus = ['resize smart -50', 'mode window']
+equal = ['resize smart +50', 'mode window']
+
+# Layout
+t = ['layout tiles horizontal vertical', 'mode main']
+a = ['layout accordion horizontal vertical', 'mode main']
+f = ['fullscreen', 'mode main']
+
+# Actions
+q = ['close', 'mode main']
+r = ['reload-config', 'mode main']
+
+# Exit
+esc = 'mode main'
 
 # ── Window rules ───────────────────────────────────────────────────────────────
 

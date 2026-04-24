@@ -23,11 +23,29 @@
                         ]
                     },
                     {
-                        "description": "Left Control / Right Option / A / Semicolon to Meh Key (Ctrl+Cmd+Opt)",
+                        "description": "Left Control to Hyper Key (Ctrl+Cmd+Opt+Shift)",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "left_control",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_command",
+                                        "modifiers": ["left_control", "left_option", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Right Option / Tab to Meh Key (Ctrl+Cmd+Opt)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "right_option",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
@@ -40,7 +58,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "right_option",
+                                    "key_code": "tab",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
@@ -49,6 +67,7 @@
                                         "modifiers": ["left_control", "left_option"]
                                     }
                                 ],
+                                "to_if_alone": [{ "key_code": "tab" }],
                                 "type": "basic"
                             }
                         ]
