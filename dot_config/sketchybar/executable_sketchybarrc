@@ -103,5 +103,19 @@ sketchybar --add item battery right \
   --subscribe battery system_woke power_source_change
 
 
+# ── Fullscreen indicator (hidden by default) ───────────────────────────────
+sketchybar --add item fullscreen_indicator center \
+  --set fullscreen_indicator \
+    drawing=off \
+    icon.drawing=off \
+    label.drawing=off \
+    background.color=0xffcc241d \
+    background.height=3 \
+    background.corner_radius=0 \
+    width=4000 \
+    y_offset=-16 \
+    padding_left=0 \
+    padding_right=0
+
 # ── Force initial update ───────────────────────────────────────────────────
 sketchybar --update
