@@ -1,0 +1,111 @@
+#!/bin/bash
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+# ── Colors (Gruvbox Dark, 0xAARRGGBB) ──────────────────────────────────────
+BAR_COLOR=0xff1d2021
+ITEM_BG=0xff3c3836
+ACCENT=0xffd79921
+WHITE=0xffebdbb2
+GREY=0xff928374
+ORANGE=0xffff8019
+TRANSPARENT=0x00000000
+
+# ── Bar appearance ──────────────────────────────────────────────────────────
+sketchybar --bar \
+  position=top \
+  height=36 \
+  blur_radius=30 \
+  color=$BAR_COLOR \
+  border_width=0 \
+  margin=0 \
+  y_offset=0 \
+  padding_left=8 \
+  padding_right=8 \
+  topmost=window
+
+# ── Default item styling ───────────────────────────────────────────────────
+sketchybar --default \
+  icon.font="IosevkaTerm Nerd Font:Bold:14.0" \
+  icon.color=$WHITE \
+  label.font="IosevkaTerm Nerd Font:Regular:14.0" \
+  label.color=$WHITE \
+  background.color=$ITEM_BG \
+  background.corner_radius=6 \
+  background.height=26 \
+  padding_left=4 \
+  padding_right=4 \
+  label.padding_left=6 \
+  label.padding_right=6 \
+  icon.padding_left=8 \
+  icon.padding_right=4
+
+# ── Left: AeroSpace workspaces ─────────────────────────────────────────────
+sketchybar --add event aerospace_workspace_change
+
+WORKSPACES=("u" "i" "o" "p" "7" "8" "9" "0")
+LABELS=("browser" "comms" "terminal" "design" "dev" "edge" " " "VMs")
+
+for i in "${!WORKSPACES[@]}"; do
+  ws="${WORKSPACES[$i]}"
+  label="${LABELS[$i]}"
+  sketchybar --add item "workspace.$ws" left \
+    --set "workspace.$ws" \
+      icon="$ws" \
+      icon.font="IosevkaTerm Nerd Font:Bold:14.0" \
+      label="$label" \
+      label.font="IosevkaTerm Nerd Font:Regular:13.0" \
+      label.color=$GREY \
+      icon.color=$GREY \
+      background.color=$TRANSPARENT \
+      background.height=26 \
+      background.corner_radius=6 \
+      padding_left=2 \
+      padding_right=2 \
+      label.padding_left=4 \
+      label.padding_right=6 \
+      icon.padding_left=6 \
+      icon.padding_right=0 \
+      click_script="aerospace workspace $ws" \
+      script="$PLUGIN_DIR/workspace.sh $ws"
+done
+
+for ws in "${WORKSPACES[@]}"; do
+  sketchybar --subscribe "workspace.$ws" aerospace_workspace_change
+done
+
+# ── Center-left: Front app (left of notch) ─────────────────────────────────
+sketchybar --add item front_app q \
+  --set front_app \
+    icon.drawing=off \
+    label.font="VictorMono Nerd Font:SemiBold:14.0" \
+    label.color=$WHITE \
+    background.color=$TRANSPARENT \
+    label.padding_right=20 \
+    script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched
+
+# ── Center-right: Clock (right of notch) ──────────────────────────────────
+sketchybar --add item clock e \
+  --set clock \
+    icon.drawing=off \
+    label.font="VictorMono Nerd Font:SemiBold:14.0" \
+    label.color=$WHITE \
+    background.color=$TRANSPARENT \
+    label.padding_left=20 \
+    script="$PLUGIN_DIR/clock.sh" \
+    update_freq=30
+
+# ── Right: Battery ─────────────────────────────────────────────────────────
+sketchybar --add item battery right \
+  --set battery \
+    icon.font="IosevkaTerm Nerd Font:Regular:16.0" \
+    label.font="IosevkaTerm Nerd Font:Regular:13.0" \
+    background.color=$ITEM_BG \
+    script="$PLUGIN_DIR/battery.sh" \
+    update_freq=120 \
+  --subscribe battery system_woke power_source_change
+
+
+# ── Force initial update ───────────────────────────────────────────────────
+sketchybar --update

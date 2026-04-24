@@ -38,6 +38,7 @@ packages=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     FelixKratz/formulae/borders
+    FelixKratz/formulae/sketchybar
 )
 
 for package in "${packages[@]}"; do
