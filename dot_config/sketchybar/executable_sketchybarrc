@@ -44,28 +44,24 @@ sketchybar --default \
 sketchybar --add event aerospace_workspace_change
 
 WORKSPACES=("u" "i" "o" "p" "7" "8" "9" "0")
-LABELS=("browser" "comms" "terminal" "design" "dev" "edge" " " "VMs")
+ICONS=("󰈹" "󰍡" "" "󰏘" "󰅩" "󰇩" "󰝥" "󰍹")
 
 for i in "${!WORKSPACES[@]}"; do
   ws="${WORKSPACES[$i]}"
-  label="${LABELS[$i]}"
+  icon="${ICONS[$i]}"
   sketchybar --add item "workspace.$ws" left \
     --set "workspace.$ws" \
-      icon="$ws" \
-      icon.font="IosevkaTerm Nerd Font:Bold:14.0" \
-      label="$label" \
-      label.font="IosevkaTerm Nerd Font:Regular:13.0" \
-      label.color=$GREY \
+      icon="$icon" \
+      icon.font="IosevkaTerm Nerd Font:Bold:16.0" \
       icon.color=$GREY \
+      label.drawing=off \
       background.color=$TRANSPARENT \
       background.height=26 \
       background.corner_radius=6 \
       padding_left=2 \
       padding_right=2 \
-      label.padding_left=4 \
-      label.padding_right=6 \
-      icon.padding_left=6 \
-      icon.padding_right=0 \
+      icon.padding_left=8 \
+      icon.padding_right=8 \
       click_script="aerospace workspace $ws" \
       script="$PLUGIN_DIR/workspace.sh $ws"
 done

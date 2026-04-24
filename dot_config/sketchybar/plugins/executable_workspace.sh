@@ -15,11 +15,9 @@ fi
 if [ "$WS_ID" = "$FOCUSED_WORKSPACE" ]; then
   sketchybar --set "$NAME" \
     icon.color=$ORANGE \
-    label.color=$ACCENT \
     background.color=$ACTIVE_BG
 else
   sketchybar --set "$NAME" \
     icon.color=$GREY \
-    label.color=$GREY \
     background.color=$TRANSPARENT
 fi
