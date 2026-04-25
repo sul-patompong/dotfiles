@@ -83,6 +83,14 @@
                         "vendor_id": 13364
                     },
                     "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "device_address": "c2-01-a9-a0-c6-2f",
+                        "is_keyboard": true,
+                        "is_pointing_device": true
+                    },
+                    "ignore": false
                 }
             ],
             "name": "Default profile",
