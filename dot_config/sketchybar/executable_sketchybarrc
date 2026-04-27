@@ -40,6 +40,38 @@ sketchybar --default \
   icon.padding_left=8 \
   icon.padding_right=4
 
+# ── Far left: AeroSpace mode indicator ─────────────────────────────────────
+sketchybar --add event aerospace_mode_change
+
+sketchybar --add item aerospace_mode left \
+  --set aerospace_mode \
+    icon.drawing=off \
+    label.font="IosevkaTerm Nerd Font:Bold:12.0" \
+    label.padding_left=8 \
+    label.padding_right=8 \
+    background.color=$ORANGE \
+    background.corner_radius=6 \
+    background.height=22 \
+    drawing=off \
+    script="$PLUGIN_DIR/aerospace_mode.sh" \
+  --subscribe aerospace_mode aerospace_mode_change
+
+# ── Far left: AeroSpace fullscreen indicator ──────────────────────────────
+sketchybar --add event aerospace_fullscreen_change
+
+sketchybar --add item aerospace_fullscreen left \
+  --set aerospace_fullscreen \
+    icon.drawing=off \
+    label.font="IosevkaTerm Nerd Font:Bold:12.0" \
+    label.padding_left=8 \
+    label.padding_right=8 \
+    background.color=$ORANGE \
+    background.corner_radius=6 \
+    background.height=22 \
+    drawing=off \
+    script="$PLUGIN_DIR/aerospace_fullscreen.sh" \
+  --subscribe aerospace_fullscreen aerospace_fullscreen_change front_app_switched
+
 # ── Left: AeroSpace workspaces ─────────────────────────────────────────────
 sketchybar --add event aerospace_workspace_change
 
@@ -113,19 +145,6 @@ sketchybar --add item wifi right \
   --subscribe wifi wifi_change system_woke
 
 
-# ── Fullscreen indicator (hidden by default) ───────────────────────────────
-sketchybar --add item fullscreen_indicator center \
-  --set fullscreen_indicator \
-    drawing=off \
-    icon.drawing=off \
-    label.drawing=off \
-    background.color=0xffcc241d \
-    background.height=3 \
-    background.corner_radius=0 \
-    width=4000 \
-    y_offset=-16 \
-    padding_left=0 \
-    padding_right=0
-
 # ── Force initial update ───────────────────────────────────────────────────
 sketchybar --update
+sketchybar --trigger aerospace_fullscreen_change
