@@ -1,3 +1,11 @@
 #!/bin/bash
 
-sketchybar --set "$NAME" label="$(date '+%I:%M %p')"
+day=$(date +%-d)
+case $day in
+  1|21|31) suffix="st" ;;
+  2|22)    suffix="nd" ;;
+  3|23)    suffix="rd" ;;
+  *)       suffix="th" ;;
+esac
+
+sketchybar --set "$NAME" label="$(date "+%I:%M %p - %a ${day}${suffix} %b %y")"

@@ -11,6 +11,46 @@ GREY=0xff928374
 ORANGE=0xffff8019
 TRANSPARENT=0x00000000
 
+# ── Keyboard layout helpers (Swift, built once) ───────────────────────────
+KB_LAYOUT_BIN="$HOME/.local/bin/keyboard-layout"
+KB_LISTENER_BIN="$HOME/.local/bin/keyboard-layout-listener"
+
+if [ ! -x "$KB_LAYOUT_BIN" ]; then
+  mkdir -p "$HOME/.local/bin"
+  cat > /tmp/keyboard_layout.swift << 'SWIFT'
+import Carbon
+if let src = TISCopyCurrentKeyboardInputSource()?.takeRetainedValue(),
+   let ptr = TISGetInputSourceProperty(src, kTISPropertyInputSourceID) {
+    print(Unmanaged<CFString>.fromOpaque(ptr).takeUnretainedValue() as String)
+}
+SWIFT
+  swiftc /tmp/keyboard_layout.swift -o "$KB_LAYOUT_BIN" 2>/dev/null
+  rm -f /tmp/keyboard_layout.swift
+fi
+
+if [ ! -x "$KB_LISTENER_BIN" ]; then
+  cat > /tmp/keyboard_listener.swift << 'SWIFT'
+import Carbon
+import Foundation
+
+DistributedNotificationCenter.default().addObserver(
+    forName: NSNotification.Name(kTISNotifySelectedKeyboardInputSourceChanged as String),
+    object: nil, queue: nil) { _ in
+    let p = Process()
+    p.launchPath = "/bin/sh"
+    p.arguments = ["-c", "sketchybar --trigger keyboard_change"]
+    try? p.run()
+}
+RunLoop.main.run()
+SWIFT
+  swiftc /tmp/keyboard_listener.swift -o "$KB_LISTENER_BIN" 2>/dev/null
+  rm -f /tmp/keyboard_listener.swift
+fi
+
+pkill -f "$KB_LISTENER_BIN" 2>/dev/null
+"$KB_LISTENER_BIN" >/dev/null 2>&1 &
+disown
+
 # ── Bar appearance ──────────────────────────────────────────────────────────
 sketchybar --bar \
   position=top \
@@ -129,7 +169,7 @@ sketchybar --add item battery right \
   --set battery \
     icon.font="IosevkaTerm Nerd Font:Regular:16.0" \
     label.font="IosevkaTerm Nerd Font:Regular:13.0" \
-    background.color=$ITEM_BG \
+    background.color=$TRANSPARENT \
     script="$PLUGIN_DIR/battery.sh" \
     update_freq=120 \
   --subscribe battery system_woke power_source_change
@@ -139,10 +179,22 @@ sketchybar --add item wifi right \
   --set wifi \
     icon.font="IosevkaTerm Nerd Font:Regular:16.0" \
     label.font="IosevkaTerm Nerd Font:Regular:13.0" \
-    background.color=$ITEM_BG \
+    background.color=$TRANSPARENT \
     script="$PLUGIN_DIR/wifi.sh" \
     update_freq=10 \
   --subscribe wifi wifi_change system_woke
+
+
+# ── Right: Keyboard layout (TH / EN) ──────────────────────────────────────
+sketchybar --add event keyboard_change
+
+sketchybar --add item keyboard right \
+  --set keyboard \
+    icon.drawing=off \
+    label.font="IosevkaTerm Nerd Font:Bold:13.0" \
+    background.color=$TRANSPARENT \
+    script="$PLUGIN_DIR/keyboard.sh" \
+  --subscribe keyboard keyboard_change
 
 
 # ── Force initial update ───────────────────────────────────────────────────
