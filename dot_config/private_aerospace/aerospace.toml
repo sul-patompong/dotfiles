@@ -83,8 +83,8 @@ cmd-alt-ctrl-tab = 'workspace-back-and-forth'
 cmd-alt-ctrl-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # Modes
-cmd-alt-ctrl-shift-semicolon = ['mode service', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=service']
-cmd-alt-ctrl-w = ['mode window', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=window']
+cmd-alt-ctrl-semicolon = ['mode service', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=service']
+cmd-alt-ctrl-m = ['mode window', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=window']
 
 # ── Service mode ───────────────────────────────────────────────────────────────
 [mode.service.binding]
@@ -92,19 +92,9 @@ esc = ['reload-config', 'mode main', 'exec-and-forget sketchybar --trigger aeros
 r = ['flatten-workspace-tree', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
 f = ['layout floating tiling', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
 backspace = ['close-all-windows-but-current', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
-cmd-alt-ctrl-shift-h = ['join-with left', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
-cmd-alt-ctrl-shift-j = ['join-with down', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
-cmd-alt-ctrl-shift-k = ['join-with up', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
-cmd-alt-ctrl-shift-l = ['join-with right', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
 
 # ── Window mode ────────────────────────────────────────────────────────────────
 [mode.window.binding]
-
-# # Focus (exits mode — usually focus once then continue)
-# h = ['focus left', 'mode main']
-# j = ['focus down', 'mode main']
-# k = ['focus up', 'mode main']
-# l = ['focus right', 'mode main']
 
 # Move (stays in mode — often repeated)
 h = ['move left', 'mode window']
@@ -112,14 +102,19 @@ j = ['move down', 'mode window']
 k = ['move up', 'mode window']
 l = ['move right', 'mode window']
 
-cmd-alt-ctrl-u = 'move-node-to-workspace u'
-cmd-alt-ctrl-i = 'move-node-to-workspace i'
-cmd-alt-ctrl-o = 'move-node-to-workspace o'
-cmd-alt-ctrl-p = 'move-node-to-workspace p'
-cmd-alt-ctrl-7 = 'move-node-to-workspace 7'
-cmd-alt-ctrl-8 = 'move-node-to-workspace 8'
-cmd-alt-ctrl-9 = 'move-node-to-workspace 9'
-cmd-alt-ctrl-0 = 'move-node-to-workspace 0'
+shift-h = ['join-with left', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+shift-j = ['join-with down', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+shift-k = ['join-with up', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+shift-l = ['join-with right', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+
+u = ['move-node-to-workspace --focus-follows-window u', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+i = ['move-node-to-workspace --focus-follows-window i', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+o = ['move-node-to-workspace --focus-follows-window o', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+p = ['move-node-to-workspace --focus-follows-window p', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+7 = ['move-node-to-workspace --focus-follows-window 7', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+8 = ['move-node-to-workspace --focus-follows-window 8', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+9 = ['move-node-to-workspace --focus-follows-window 9', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
+0 = ['move-node-to-workspace --focus-follows-window 0', 'mode main', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main']
 
 # Resize (stays in mode — often repeated)
 minus = ['resize smart -50', 'mode window']
