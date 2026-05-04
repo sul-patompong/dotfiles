@@ -116,7 +116,7 @@ sketchybar --add item aerospace_fullscreen left \
 sketchybar --add event aerospace_workspace_change
 
 WORKSPACES=("u" "i" "o" "p" "7" "8" "9" "0")
-ICONS=("󰊯" "󰍡" "󰅩" "󰃮" "󰎶" "󰎹" "󰎼" "󰎡")
+ICONS=("󰊯" "󰍡" "󰅩" "󰃮" "󰣪" "󰎹" "󰎼" "󱒃")
 
 for i in "${!WORKSPACES[@]}"; do
   ws="${WORKSPACES[$i]}"
