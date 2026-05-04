@@ -8,4 +8,4 @@ case $day in
   *)       suffix="th" ;;
 esac
 
-sketchybar --set "$NAME" label="$(date "+%I:%M %p - %a ${day}${suffix} %b %y")"
+sketchybar --set "$NAME" label="$(date "+%I:%M %p - %a ${day}${suffix} %b %y - %Y%m%d")"
