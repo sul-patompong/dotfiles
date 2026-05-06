@@ -37,7 +37,6 @@ packages=(
     mise
     zsh-autosuggestions
     zsh-syntax-highlighting
-    FelixKratz/formulae/borders
     FelixKratz/formulae/sketchybar
 )
 
