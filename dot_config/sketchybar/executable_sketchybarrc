@@ -66,9 +66,9 @@ sketchybar --bar \
 
 # ── Default item styling ───────────────────────────────────────────────────
 sketchybar --default \
-  icon.font="IosevkaTerm Nerd Font:Bold:14.0" \
+  icon.font="JetBrainsMono Nerd Font:Bold:16.0" \
   icon.color=$WHITE \
-  label.font="IosevkaTerm Nerd Font:Regular:14.0" \
+  label.font="JetBrainsMono Nerd Font:Regular:16.0" \
   label.color=$WHITE \
   background.color=$ITEM_BG \
   background.corner_radius=6 \
@@ -86,7 +86,7 @@ sketchybar --add event aerospace_mode_change
 sketchybar --add item aerospace_mode left \
   --set aerospace_mode \
     icon.drawing=off \
-    label.font="IosevkaTerm Nerd Font:Bold:12.0" \
+    label.font="JetBrainsMono Nerd Font:Bold:14.0" \
     label.padding_left=8 \
     label.padding_right=8 \
     background.color=$ORANGE \
@@ -102,7 +102,7 @@ sketchybar --add event aerospace_fullscreen_change
 sketchybar --add item aerospace_fullscreen left \
   --set aerospace_fullscreen \
     icon.drawing=off \
-    label.font="IosevkaTerm Nerd Font:Bold:12.0" \
+    label.font="JetBrainsMono Nerd Font:Bold:14.0" \
     label.padding_left=8 \
     label.padding_right=8 \
     background.color=$ORANGE \
@@ -124,7 +124,7 @@ for i in "${!WORKSPACES[@]}"; do
   sketchybar --add item "workspace.$ws" left \
     --set "workspace.$ws" \
       icon="$icon" \
-      icon.font="IosevkaTerm Nerd Font:Bold:16.0" \
+      icon.font="JetBrainsMono Nerd Font:Bold:18.0" \
       icon.color=$GREY \
       label.drawing=off \
       background.color=$TRANSPARENT \
@@ -146,7 +146,7 @@ done
 sketchybar --add item front_app q \
   --set front_app \
     icon.drawing=off \
-    label.font="VictorMono Nerd Font:SemiBold:14.0" \
+    label.font="JetBrainsMono Nerd Font:SemiBold:16.0" \
     label.color=$WHITE \
     background.color=$TRANSPARENT \
     label.padding_right=20 \
@@ -157,7 +157,7 @@ sketchybar --add item front_app q \
 sketchybar --add item clock e \
   --set clock \
     icon.drawing=off \
-    label.font="VictorMono Nerd Font:SemiBold:14.0" \
+    label.font="JetBrainsMono Nerd Font:SemiBold:16.0" \
     label.color=$WHITE \
     background.color=$TRANSPARENT \
     label.padding_left=20 \
@@ -167,8 +167,8 @@ sketchybar --add item clock e \
 # ── Right: Battery ─────────────────────────────────────────────────────────
 sketchybar --add item battery right \
   --set battery \
-    icon.font="IosevkaTerm Nerd Font:Regular:16.0" \
-    label.font="IosevkaTerm Nerd Font:Regular:13.0" \
+    icon.font="JetBrainsMono Nerd Font:Regular:18.0" \
+    label.font="JetBrainsMono Nerd Font:Regular:15.0" \
     background.color=$TRANSPARENT \
     script="$PLUGIN_DIR/battery.sh" \
     update_freq=120 \
@@ -177,8 +177,8 @@ sketchybar --add item battery right \
 # ── Right: WiFi / Ethernet ────────────────────────────────────────────────
 sketchybar --add item wifi right \
   --set wifi \
-    icon.font="IosevkaTerm Nerd Font:Regular:16.0" \
-    label.font="IosevkaTerm Nerd Font:Regular:13.0" \
+    icon.font="JetBrainsMono Nerd Font:Regular:18.0" \
+    label.font="JetBrainsMono Nerd Font:Regular:15.0" \
     background.color=$TRANSPARENT \
     script="$PLUGIN_DIR/wifi.sh" \
     update_freq=10 \
@@ -191,7 +191,7 @@ sketchybar --add event keyboard_change
 sketchybar --add item keyboard right \
   --set keyboard \
     icon.drawing=off \
-    label.font="IosevkaTerm Nerd Font:Bold:13.0" \
+    label.font="JetBrainsMono Nerd Font:Bold:15.0" \
     background.color=$TRANSPARENT \
     script="$PLUGIN_DIR/keyboard.sh" \
   --subscribe keyboard keyboard_change
