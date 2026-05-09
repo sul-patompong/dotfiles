@@ -23,6 +23,29 @@
                         ]
                     },
                     {
+                        "description": "F/J: tap for letter, hold for Shift",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_shift", "lazy": true }],
+                                "to_if_alone": [{ "key_code": "f" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "right_shift", "lazy": true }],
+                                "to_if_alone": [{ "key_code": "j" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Left Control to Hyper Key (Ctrl+Cmd+Opt+Shift)",
                         "manipulators": [
                             {
@@ -91,6 +114,14 @@
                         "is_pointing_device": true
                     },
                     "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 6519,
+                        "vendor_id": 12951
+                    },
+                    "ignore": true
                 }
             ],
             "name": "Default profile",
