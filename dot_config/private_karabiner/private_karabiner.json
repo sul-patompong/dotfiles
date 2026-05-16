@@ -99,6 +99,14 @@
                         "vendor_id": 12951
                     },
                     "ignore": true
+                },
+                {
+                    "identifiers": {
+                        "device_address": "ed-ca-bb-db-e0-43",
+                        "is_keyboard": true,
+                        "is_pointing_device": true
+                    },
+                    "ignore": false
                 }
             ],
             "name": "Default profile",
