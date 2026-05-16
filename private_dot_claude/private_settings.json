@@ -11,6 +11,17 @@
   },
   "model": "opus[1m]",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | { read -r f; [ -n \"$f\" ] || exit 0; src=$(chezmoi source-path \"$f\" 2>/dev/null) || exit 0; [ -n \"$src\" ] || exit 0; jq -nc --arg s \"$src\" '{hookSpecificOutput:{hookEventName:\"PreToolUse\",permissionDecision:\"ask\",permissionDecisionReason:(\"Chezmoi-managed file. Source: \\($s). Approve to edit the live file directly, or cancel and edit the source then run `chezmoi apply`.\")}}'; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit",
