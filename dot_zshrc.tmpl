@@ -35,4 +35,8 @@ eval "$(starship init zsh)"
 
 # Tools
 eval "$(mise activate zsh)"
-command -v fzf >/dev/null && eval "$(fzf --zsh)"
+if command -v fzf >/dev/null; then
+    eval "$(fzf --zsh)"
+    bindkey -r '\ec'
+    bindkey '^G' fzf-cd-widget
+fi
