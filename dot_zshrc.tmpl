@@ -16,6 +16,11 @@ if (( $+commands[eza] )); then
     alias lt='eza --tree --level=2 --long --icons --git'
     alias lta='eza --tree --level=2 --long --icons --git -a'
 fi
+if (( $+commands[bat] )); then
+    alias cat='bat --paging=never'
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+fi
 
 # Plugins (zsh)
 for plugin in zsh-autosuggestions/zsh-autosuggestions.zsh zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
