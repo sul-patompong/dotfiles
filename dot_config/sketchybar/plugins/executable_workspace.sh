@@ -25,21 +25,25 @@ fi
 
 if [ "$WS_ID" = "$FOCUSED_WORKSPACE" ]; then
   ICON_COLOR="$BAR_COLOR"
+  LABEL_COLOR="$BAR_COLOR"
   BG_COLOR="$ACCENT"
-  BORDER_COLOR="$ORANGE"
+  BORDER_COLOR="$ACCENT"
 elif [ "$APP_COUNT" -gt 0 ]; then
   ICON_COLOR="$WHITE"
+  LABEL_COLOR="$WHITE"
   BG_COLOR="$ITEM_BG"
   BORDER_COLOR="$BRACKET_BG"
 else
   ICON_COLOR="$DIM"
-  BG_COLOR=0x4d3c3836
-  BORDER_COLOR=0x66504945
+  LABEL_COLOR="$DIM"
+  BG_COLOR=0x4d232a2e
+  BORDER_COLOR=0x662d353b
 fi
 
 if [ -n "$LABEL" ]; then
   sketchybar --animate sin_in_out 15 --set "$NAME" \
     icon.color="$ICON_COLOR" \
+    label.color="$LABEL_COLOR" \
     background.color="$BG_COLOR" \
     background.border_color="$BORDER_COLOR" \
     label="$LABEL" \
@@ -47,6 +51,7 @@ if [ -n "$LABEL" ]; then
 else
   sketchybar --animate sin_in_out 15 --set "$NAME" \
     icon.color="$ICON_COLOR" \
+    label.color="$LABEL_COLOR" \
     background.color="$BG_COLOR" \
     background.border_color="$BORDER_COLOR" \
     label="" \
