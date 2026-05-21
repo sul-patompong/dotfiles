@@ -35,6 +35,8 @@ packages=(
     eza
     lazygit
     mise
+    jq
+    switchaudio-osx
     zsh-autosuggestions
     zsh-syntax-highlighting
     FelixKratz/formulae/sketchybar
@@ -48,6 +50,15 @@ for package in "${packages[@]}"; do
         brew install "$package"
     fi
 done
+
+# Media control (system-wide nowplaying for sketchybar)
+if ! brew list media-control &> /dev/null; then
+    echo "==> Installing media-control..."
+    brew tap media-control/homebrew-formulae
+    brew install media-control
+else
+    echo "==> media-control is already installed"
+fi
 
 # Install applications
 echo "==> Installing applications..."
@@ -73,6 +84,7 @@ fonts=(
     font-iosevka-term-nerd-font
     font-victor-mono-nerd-font
     font-jetbrains-mono-nerd-font
+    font-sketchybar-app-font
 )
 
 for font in "${fonts[@]}"; do

@@ -1,15 +1,11 @@
 #!/bin/bash
 
+CONFIG_DIR="$HOME/.config/sketchybar"
 PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items"
 
-# ── Colors (Gruvbox Dark, 0xAARRGGBB) ──────────────────────────────────────
-BAR_COLOR=0xff1d2021
-ITEM_BG=0xff3c3836
-ACCENT=0xffd79921
-WHITE=0xffebdbb2
-GREY=0xff928374
-ORANGE=0xffff8019
-TRANSPARENT=0x00000000
+source "$CONFIG_DIR/colors.sh"
+source "$CONFIG_DIR/icons.sh"
 
 # ── Keyboard layout helpers (Swift, built once) ───────────────────────────
 KB_LAYOUT_BIN="$HOME/.local/bin/keyboard-layout"
@@ -51,28 +47,32 @@ pkill -f "$KB_LISTENER_BIN" 2>/dev/null
 "$KB_LISTENER_BIN" >/dev/null 2>&1 &
 disown
 
-# ── Bar appearance ──────────────────────────────────────────────────────────
+# ── Bar appearance (transparent bg — pills float against wallpaper) ────────
 sketchybar --bar \
   position=top \
-  height=38 \
-  blur_radius=30 \
-  color=$BAR_COLOR \
+  height=46 \
+  blur_radius=0 \
+  color="$TRANSPARENT" \
   border_width=0 \
   margin=0 \
   y_offset=0 \
-  padding_left=8 \
-  padding_right=8 \
-  topmost=window
+  corner_radius=0 \
+  padding_left=12 \
+  padding_right=12 \
+  notch_width=210 \
+  notch_display_height=32 \
+  topmost=on \
+  show_in_fullscreen=on
 
 # ── Default item styling ───────────────────────────────────────────────────
 sketchybar --default \
-  icon.font="JetBrainsMono Nerd Font:Bold:16.0" \
-  icon.color=$WHITE \
-  label.font="JetBrainsMono Nerd Font:Regular:16.0" \
-  label.color=$WHITE \
-  background.color=$ITEM_BG \
-  background.corner_radius=6 \
-  background.height=26 \
+  icon.font="JetBrainsMono Nerd Font:Bold:17.0" \
+  icon.color="$WHITE" \
+  label.font="JetBrainsMono Nerd Font:Regular:14.0" \
+  label.color="$WHITE" \
+  background.color="$ITEM_BG" \
+  background.corner_radius=8 \
+  background.height=30 \
   padding_left=4 \
   padding_right=4 \
   label.padding_left=6 \
@@ -80,123 +80,23 @@ sketchybar --default \
   icon.padding_left=8 \
   icon.padding_right=4
 
-# ── Far left: AeroSpace mode indicator ─────────────────────────────────────
-sketchybar --add event aerospace_mode_change
+# ── Items ──────────────────────────────────────────────────────────────────
+# Note: right-side items populate from the right edge moving leftward,
+# so order of addition is REVERSE of visual left-to-right layout.
+source "$ITEM_DIR/aerospace.sh"
+source "$ITEM_DIR/front_app.sh"
+source "$ITEM_DIR/clock.sh"
+# Right side (rightmost first): cpu, battery, wifi, volume, keyboard, media
+source "$ITEM_DIR/cpu.sh"
+source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/wifi.sh"
+source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/keyboard.sh"
+source "$ITEM_DIR/media.sh"
 
-sketchybar --add item aerospace_mode left \
-  --set aerospace_mode \
-    icon.drawing=off \
-    label.font="JetBrainsMono Nerd Font:Bold:14.0" \
-    label.padding_left=8 \
-    label.padding_right=8 \
-    background.color=$ORANGE \
-    background.corner_radius=6 \
-    background.height=22 \
-    drawing=off \
-    script="$PLUGIN_DIR/aerospace_mode.sh" \
-  --subscribe aerospace_mode aerospace_mode_change
-
-# ── Far left: AeroSpace fullscreen indicator ──────────────────────────────
-sketchybar --add event aerospace_fullscreen_change
-
-sketchybar --add item aerospace_fullscreen left \
-  --set aerospace_fullscreen \
-    icon.drawing=off \
-    label.font="JetBrainsMono Nerd Font:Bold:14.0" \
-    label.padding_left=8 \
-    label.padding_right=8 \
-    background.color=$ORANGE \
-    background.corner_radius=6 \
-    background.height=22 \
-    drawing=off \
-    script="$PLUGIN_DIR/aerospace_fullscreen.sh" \
-  --subscribe aerospace_fullscreen aerospace_fullscreen_change front_app_switched
-
-# ── Left: AeroSpace workspaces ─────────────────────────────────────────────
-sketchybar --add event aerospace_workspace_change
-
-WORKSPACES=("u" "i" "o" "p" "7" "8" "9" "0")
-ICONS=("󰊯" "󰍡" "󰅩" "󰃮" "󰣪" "󰎹" "󰎼" "󱒃")
-
-for i in "${!WORKSPACES[@]}"; do
-  ws="${WORKSPACES[$i]}"
-  icon="${ICONS[$i]}"
-  sketchybar --add item "workspace.$ws" left \
-    --set "workspace.$ws" \
-      icon="$icon" \
-      icon.font="JetBrainsMono Nerd Font:Bold:18.0" \
-      icon.color=$GREY \
-      label.drawing=off \
-      background.color=$TRANSPARENT \
-      background.height=26 \
-      background.corner_radius=6 \
-      padding_left=2 \
-      padding_right=2 \
-      icon.padding_left=8 \
-      icon.padding_right=8 \
-      click_script="aerospace workspace $ws" \
-      script="$PLUGIN_DIR/workspace.sh $ws"
-done
-
-for ws in "${WORKSPACES[@]}"; do
-  sketchybar --subscribe "workspace.$ws" aerospace_workspace_change
-done
-
-# ── Center-left: Front app (left of notch) ─────────────────────────────────
-sketchybar --add item front_app q \
-  --set front_app \
-    icon.drawing=off \
-    label.font="JetBrainsMono Nerd Font:SemiBold:16.0" \
-    label.color=$WHITE \
-    background.color=$TRANSPARENT \
-    label.padding_right=20 \
-    script="$PLUGIN_DIR/front_app.sh" \
-  --subscribe front_app front_app_switched
-
-# ── Center-right: Clock (right of notch) ──────────────────────────────────
-sketchybar --add item clock e \
-  --set clock \
-    icon.drawing=off \
-    label.font="JetBrainsMono Nerd Font:SemiBold:16.0" \
-    label.color=$WHITE \
-    background.color=$TRANSPARENT \
-    label.padding_left=20 \
-    script="$PLUGIN_DIR/clock.sh" \
-    update_freq=30
-
-# ── Right: Battery ─────────────────────────────────────────────────────────
-sketchybar --add item battery right \
-  --set battery \
-    icon.font="JetBrainsMono Nerd Font:Regular:18.0" \
-    label.font="JetBrainsMono Nerd Font:Regular:15.0" \
-    background.color=$TRANSPARENT \
-    script="$PLUGIN_DIR/battery.sh" \
-    update_freq=120 \
-  --subscribe battery system_woke power_source_change
-
-# ── Right: WiFi / Ethernet ────────────────────────────────────────────────
-sketchybar --add item wifi right \
-  --set wifi \
-    icon.font="JetBrainsMono Nerd Font:Regular:18.0" \
-    label.font="JetBrainsMono Nerd Font:Regular:15.0" \
-    background.color=$TRANSPARENT \
-    script="$PLUGIN_DIR/wifi.sh" \
-    update_freq=10 \
-  --subscribe wifi wifi_change system_woke
-
-
-# ── Right: Keyboard layout (TH / EN) ──────────────────────────────────────
-sketchybar --add event keyboard_change
-
-sketchybar --add item keyboard right \
-  --set keyboard \
-    icon.drawing=off \
-    label.font="JetBrainsMono Nerd Font:Bold:15.0" \
-    background.color=$TRANSPARENT \
-    script="$PLUGIN_DIR/keyboard.sh" \
-  --subscribe keyboard keyboard_change
-
+# (No system bracket — each item has its own pill)
 
 # ── Force initial update ───────────────────────────────────────────────────
 sketchybar --update
 sketchybar --trigger aerospace_fullscreen_change
+sketchybar --trigger aerospace_workspace_change
