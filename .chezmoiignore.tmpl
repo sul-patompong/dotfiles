@@ -9,8 +9,7 @@ Library/
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
-.config/kanata/
-.chezmoiscripts/linux/**
+# Linux-only paths will be listed here when added
 {{ end }}
 
 # lazygit uses XDG path on both OSes now; Library copy is redundant
@@ -19,8 +18,6 @@ Library/Application Support/lazygit/
 # Workstation-only (GUI) configs — skip on servers
 {{ if eq .machineType "server" }}
 dot_config/ghostty/**
-dot_config/kanata/**
-dot_local/share/applications/**
 {{ end }}
 
 # Generated files
